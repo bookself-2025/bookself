@@ -4,8 +4,6 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-const BOOKSELF_CPT_BOOK = 'bookself_book';
-
 return [
     // Begin: bookself_book
     [

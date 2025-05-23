@@ -18,7 +18,9 @@ return [
     'bindings'  => [
         // Bojaghi side
         'bojaghi/customPosts'      => Bojaghi\CustomPosts\CustomPosts::class,
+        'bojaghi/customTax'        => Bojaghi\Tax\CustomTaxonomies::class,
         'bojaghi/scripts'          => Bojaghi\Scripts\Script::class,
+        'bojaghi/seeds'            => Bojaghi\SeedObjects\SeedsObjects::class,
         'bojaghi/template'         => Bojaghi\Template\Template::class,
         // Plugin side
         'bookself/admin/edit'      => Modules\Admin\Edit::class,
@@ -28,18 +30,22 @@ return [
     'arguments' => [
         // Bojaghi side
         'bojaghi/customPosts' => __DIR__ . '/custom-posts.php',
+        'bojaghi/customTax'   => __DIR__ . '/custom-tax.php',
         'bojaghi/scripts'     => __DIR__ . '/scripts.php',
+        'bojaghi/seeds'       => __DIR__ . '/seeds.php',
         'bojaghi/template'    => __DIR__ . '/template.php',
         // Plugin side
         'bookself/postMeta'   => __DIR__ . '/post-meta.php',
     ],
     'modules'   => [
         '_'             => [
+            'bojaghi/seeds',
         ],
         'init'          => [
             Continy::PR_HIGH    => [
                 // Bojaghi side
                 'bojaghi/customPosts',
+                'bojaghi/customTax',
                 // Plugin side
                 'bookself/postMeta',
             ],
@@ -50,9 +56,11 @@ return [
                 'bookself/admin/metaBoxes',
             ],
             Continy::PR_LOW     => [
+                // Bojaghi side
+
                 // Plugin side
-                'bookself/admin/edit'
-            ]
+                'bookself/admin/edit',
+            ],
         ],
         'admin_init'    => [
             Continy::PR_DEFAULT => [

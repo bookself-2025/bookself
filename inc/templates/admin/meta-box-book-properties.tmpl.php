@@ -9,7 +9,7 @@ use Bojaghi\Template\Template;
  */
 ?>
 
-    <div class="bookself-book-properties">
+    <div class="bookself-form-fields bookself-book-properties">
         <dl>
             <dt>
                 <label for="bookself-book-isbn"><?php esc_html_e('ISBN', 'bookself'); ?></label>
@@ -94,4 +94,4 @@ use Bojaghi\Template\Template;
         </dl>
     </div>
 <?php
-wp_nonce_field('bookself-book-properties', '_bookself_nonce', false);
+wp_nonce_field('bookself-book-properties', '_bookself_book_properties', false);

@@ -6,9 +6,11 @@ use Bojaghi\Contract\Support;
 use Bojaghi\Template\Template;
 use Bookself\Bookself\Modules\PostMeta;
 use WP_Post;
+use function Bookself\Bookself\getAllTerms;
+use function Bookself\Bookself\getTheFirstTerm;
 use function Bookself\Bookself\Kses\getAllowedHtml;
 
-readonly class BookProperties implements Support
+readonly class BookSupport implements Support
 {
     public function __construct(
         private PostMeta $postMeta,
@@ -17,7 +19,7 @@ readonly class BookProperties implements Support
     {
     }
 
-    public function renderMetaBox(WP_Post $post): void
+    public function renderMetaBoxProperties(WP_Post $post): void
     {
         $field = [
             'author'       => $this->postMeta->author->getKey(),
@@ -41,6 +43,27 @@ readonly class BookProperties implements Support
             $this->template->template('admin/meta-box-book-properties', [
                 'field' => $field,
                 'value' => $value,
+            ]),
+            getAllowedHtml(),
+        );
+    }
+
+    public function renderMetaBoxStati(WP_Post $post): void
+    {
+        echo wp_kses(
+            $this->template->template('admin/meta-box-book-stati', [
+                'field'   => [
+                    'own'  => BOOKSELF_TAX_OWN,
+                    'read' => BOOKSELF_TAX_READ,
+                ],
+                'value'   => [
+                    'own'  => getTheFirstTerm($post->ID, BOOKSELF_TAX_OWN)->slug ?? '',
+                    'read' => getTheFirstTerm($post->ID, BOOKSELF_TAX_READ)->slug ?? '',
+                ],
+                'options' => [
+                    'own'  => getAllTerms(BOOKSELF_TAX_OWN),
+                    'read' => getAllTerms(BOOKSELF_TAX_READ),
+                ],
             ]),
             getAllowedHtml(),
         );

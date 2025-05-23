@@ -4,9 +4,10 @@ namespace Bookself\Bookself\Modules\Admin;
 
 use Bojaghi\Contract\Module;
 use Bookself\Bookself\Modules\PostMeta;
-use Bookself\Bookself\Supports\Admin\BookProperties;
+use Bookself\Bookself\Supports\Admin\BookSupport;
 use WP_Post;
 use WP_Screen;
+use function Bookself\Bookself\getTheFirstTerm;
 
 class Edit implements Module
 {
@@ -44,13 +45,17 @@ class Edit implements Module
 
         return array_merge(
             $cb ? ['cb' => $cb] : [],
-            ['cover_image' => __('커버 이미지', 'bookself')],
+            [
+                'cover_image' => __('커버 이미지', 'bookself'),
+            ],
             $columns,
             [
                 'author'       => __('저자', 'bookself'),
                 'press_name'   => __('출판사', 'bookself'),
                 'price'        => __('정가', 'bookself'),
                 'release_date' => __('출간일', 'bookself'),
+                'own'          => __('보유', 'bookself'),
+                'read'         => __('독서', 'bookself'),
             ],
             $date ? ['date' => $date] : [],
         );
@@ -116,9 +121,11 @@ class Edit implements Module
             case 'author':
                 echo esc_html($postMeta->author->get($postId));
                 break;
+
             case 'press_name':
                 echo esc_html($postMeta->pressName->get($postId));
                 break;
+
             case 'price':
                 echo esc_html(
                 // TODO: format price value by function
@@ -126,8 +133,17 @@ class Edit implements Module
                     $postMeta->price->get($postId),
                 );
                 break;
+
             case 'release_date':
                 echo esc_html($postMeta->releaseDate->get($postId));
+                break;
+
+            case 'own':
+                echo esc_html(getTheFirstTerm($postId, BOOKSELF_TAX_OWN)->name ?? '');
+                break;
+
+            case 'read':
+                echo esc_html(getTheFirstTerm($postId, BOOKSELF_TAX_READ)->name ?? '');
                 break;
         }
     }
@@ -139,7 +155,7 @@ class Edit implements Module
      *
      * @return void
      *
-     * @uses BookProperties::saveProperties
+     * @uses BookSupport::saveProperties
      */
     public function savePost(int $postId, WP_Post $post, bool $update): void
     {
@@ -152,7 +168,7 @@ class Edit implements Module
             return;
         }
 
-        bookselfCall(BookProperties::class, 'saveProperties', [$postId, $_POST]);
+        bookselfCall(BookSupport::class, 'saveProperties', [$postId, $_POST]);
     }
 
     public function updatedMessages(array $messages): array

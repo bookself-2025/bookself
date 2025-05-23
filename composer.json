@@ -1,72 +1,75 @@
 {
-  "name": "bookself-2025/bookself",
-  "homepage": "https://github.com/bookself-2025/bookself",
-  "type": "wordpress-plugin",
-  "license": "GPL-2.0-or-later",
-  "autoload": {
-    "psr-4": {
-      "Bookself\\Bookself\\": "inc/"
+    "name": "bookself-2025/bookself",
+    "homepage": "https://github.com/bookself-2025/bookself",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "Bookself\\Bookself\\": "inc/"
+        },
+        "files": [
+            "inc/facades.php",
+            "inc/functions.php"
+        ]
     },
-    "files": [
-      "inc/facades.php",
-      "inc/functions.php"
-    ]
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Bookself\\Bookself\\Tests\\": "tests/"
-    }
-  },
-  "extra": {
-    "version-sync": {
-      "constant": "BOOKSELF_VERSION"
-    }
-  },
-  "require-dev": {
-    "bojaghi/wp-tests": "^1.1",
-    "phpunit/phpunit": "^9",
-    "yoast/phpunit-polyfills": "^4.0",
-    "bojaghi/version-sync": "^1.0"
-  },
-  "scripts": {
-    "vsync": "vendor/bin/version-sync",
-    "wp-tests": [
-      "@wp-tests:setenv",
-      "vendor/bin/phpunit"
-    ],
-    "wp-tests:clean": [
-      "@wp-tests:setenv",
-      "rm -rf $WP_CORE_DIR $WP_TESTS_DIR"
-    ],
-    "wp-tests:env": [
-      "@wp-tests:setenv",
-      "vendor/bin/wp-tests -d"
-    ],
-    "wp-tests:setenv": [
-      "@putenv WP_CORE_DIR=./tests/wp-test-core",
-      "@putenv WP_TESTS_DIR=./tests/wp-test-lib",
-      "@putenv WP_TESTS_PHPUNIT_POLYFILLS_PATH=./vendor/yoast/phpunit-polyfills",
-      "@putenv DB_HOST=localhost",
-      "@putenv DB_USER=wordpress_tests",
-      "@putenv DB_PASS=wordpress_tests",
-      "@putenv DB_NAME=wordpress_tests"
-    ],
-    "wp-tests:setup": [
-      "@wp-tests:setenv",
-      "@wp-tests:clean",
-      "bin/install-wp-tests.sh $DB_NAME $DB_USER $DB_PASS $DB_HOST latest"
-    ]
-  },
-  "scripts-descriptions": {
-    "vsync": "Run bojaghi/version-sync"
-  },
-  "require": {
-    "php": ">=8.2",
-    "bojaghi/continy": "^1.1",
-    "bojaghi/custom-posts": "^1.0",
-    "bojaghi/fields": "^1.0",
-    "bojaghi/scripts": "^1.0",
-    "bojaghi/template": "^1.0"
-  },
-  "version": "0.1.0"
+    "autoload-dev": {
+        "psr-4": {
+            "Bookself\\Bookself\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "version-sync": {
+            "constant": "BOOKSELF_VERSION"
+        }
+    },
+    "require-dev": {
+        "bojaghi/wp-tests": "^1.1",
+        "phpunit/phpunit": "^9",
+        "yoast/phpunit-polyfills": "^4.0",
+        "bojaghi/version-sync": "^1.0"
+    },
+    "scripts": {
+        "vsync": "vendor/bin/version-sync",
+        "wp-tests": [
+            "@wp-tests:setenv",
+            "vendor/bin/phpunit"
+        ],
+        "wp-tests:clean": [
+            "@wp-tests:setenv",
+            "rm -rf $WP_CORE_DIR $WP_TESTS_DIR"
+        ],
+        "wp-tests:env": [
+            "@wp-tests:setenv",
+            "vendor/bin/wp-tests -d"
+        ],
+        "wp-tests:setenv": [
+            "@putenv WP_CORE_DIR=./tests/wp-test-core",
+            "@putenv WP_TESTS_DIR=./tests/wp-test-lib",
+            "@putenv WP_TESTS_PHPUNIT_POLYFILLS_PATH=./vendor/yoast/phpunit-polyfills",
+            "@putenv DB_HOST=localhost",
+            "@putenv DB_USER=wordpress_tests",
+            "@putenv DB_PASS=wordpress_tests",
+            "@putenv DB_NAME=wordpress_tests"
+        ],
+        "wp-tests:setup": [
+            "@wp-tests:setenv",
+            "@wp-tests:clean",
+            "bin/install-wp-tests.sh $DB_NAME $DB_USER $DB_PASS $DB_HOST latest"
+        ]
+    },
+    "scripts-descriptions": {
+        "vsync": "Run bojaghi/version-sync"
+    },
+    "require": {
+        "php": ">=8.2",
+        "bojaghi/continy": "^1.1",
+        "bojaghi/custom-posts": "^1.0",
+        "bojaghi/fields": "^1.0",
+        "bojaghi/scripts": "^1.0",
+        "bojaghi/template": "^1.0",
+        "bojaghi/custom-taxonomies": "^1.0",
+        "bojaghi/seed-objects": "^1.0",
+        "bojaghi/fields-render": "^1.0"
+    },
+    "version": "0.2.0"
 }

@@ -2,6 +2,8 @@
 
 namespace Bookself\Bookself {
 
+    use WP_Term;
+
     function prefixed(string $input): string
     {
         if (isPrefixed($input)) {
@@ -23,6 +25,27 @@ namespace Bookself\Bookself {
     function isPrefixed(string $input): bool
     {
         return str_starts_with($input, 'bookself_');
+    }
+
+    function getTheFirstTerm(int $postId, string $taxonomy): ?WP_Term
+    {
+        $terms = wp_get_post_terms($postId, $taxonomy);
+
+        return is_array($terms) && $terms && $terms[0] instanceof WP_Term ? $terms[0] : null;
+    }
+
+    function getAllTerms(string $taxonomy): array
+    {
+        $all   = [];
+        $terms = get_terms(['taxonomy' => $taxonomy, 'hide_empty' => false]);;
+
+        if (is_array($terms)) {
+            foreach ($terms as $t) {
+                $all[$t->slug] = $t->name;
+            }
+        }
+
+        return $all;
     }
 }
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f308681e7072b365f3dfa932dc9e43a1",
+    "content-hash": "fdbd5e121eeedc5f3677aad5a9785220",
     "packages": [
         {
             "name": "bojaghi/continy",
@@ -136,6 +136,46 @@
             "time": "2025-04-19T18:38:39+00:00"
         },
         {
+            "name": "bojaghi/custom-taxonomies",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bojaghi/custom-taxonomies.git",
+                "reference": "a547e5e81cb42f40bd3fde36a6a848b685912d62"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bojaghi/custom-taxonomies/zipball/a547e5e81cb42f40bd3fde36a6a848b685912d62",
+                "reference": "a547e5e81cb42f40bd3fde36a6a848b685912d62",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "bojaghi/wp-tests": "^1.0",
+                "phpunit/phpunit": "^9",
+                "yoast/phpunit-polyfills": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bojaghi\\Tax\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "WordPress taxonomy package",
+            "homepage": "https://github.com/bojaghi/custom-taxonomies",
+            "support": {
+                "issues": "https://github.com/bojaghi/custom-taxonomies/issues",
+                "source": "https://github.com/bojaghi/custom-taxonomies/tree/1.0.0"
+            },
+            "time": "2024-11-24T14:43:33+00:00"
+        },
+        {
             "name": "bojaghi/fields",
             "version": "1.0.0",
             "source": {
@@ -181,6 +221,52 @@
                 "source": "https://github.com/bojaghi/fields/tree/1.0.0"
             },
             "time": "2024-12-01T17:51:59+00:00"
+        },
+        {
+            "name": "bojaghi/fields-render",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bojaghi/fields-render.git",
+                "reference": "6d5b36dc002bd4af6c655d3b0e2e03d25caff0ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bojaghi/fields-render/zipball/6d5b36dc002bd4af6c655d3b0e2e03d25caff0ef",
+                "reference": "6d5b36dc002bd4af6c655d3b0e2e03d25caff0ef",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "bojaghi/wp-tests": "^1.0",
+                "phpunit/phpunit": "^9",
+                "yoast/phpunit-polyfills": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bojaghi\\FieldsRender\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "changwoo",
+                    "email": "ep6tri@hotmail.com"
+                }
+            ],
+            "description": "HTML widget helper for PHP server-side ",
+            "homepage": "https://github.com/bojaghi/fields-render",
+            "support": {
+                "issues": "https://github.com/bojaghi/fields-render/issues",
+                "source": "https://github.com/bojaghi/fields-render/tree/1.0.5"
+            },
+            "time": "2025-05-24T05:40:37+00:00"
         },
         {
             "name": "bojaghi/helper",
@@ -275,6 +361,54 @@
                 "source": "https://github.com/bojaghi/scripts/tree/1.0.3"
             },
             "time": "2025-05-21T18:48:15+00:00"
+        },
+        {
+            "name": "bojaghi/seed-objects",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bojaghi/seed-objects.git",
+                "reference": "64a9147051db10a42dbb3f86c50f7263a8ab54e9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bojaghi/seed-objects/zipball/64a9147051db10a42dbb3f86c50f7263a8ab54e9",
+                "reference": "64a9147051db10a42dbb3f86c50f7263a8ab54e9",
+                "shasum": ""
+            },
+            "require": {
+                "bojaghi/contract": "^1.0",
+                "bojaghi/helper": "^1.0",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "bojaghi/wp-tests": "^1.0",
+                "phpunit/phpunit": "^9",
+                "yoast/phpunit-polyfills": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bojaghi\\SeedObjects\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "changwoo",
+                    "email": "ep6tri@hotmail.com"
+                }
+            ],
+            "description": "Seed objects module.",
+            "homepage": "https://github.com/bojaghi/seed-objects",
+            "support": {
+                "issues": "https://github.com/bojaghi/seed-objects/issues",
+                "source": "https://github.com/bojaghi/seed-objects/tree/1.0.0"
+            },
+            "time": "2024-12-11T11:43:24+00:00"
         },
         {
             "name": "bojaghi/template",

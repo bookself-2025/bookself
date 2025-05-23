@@ -8,18 +8,18 @@
 }
 
 /**** 단일 편집 ****/
-.bookself-book-properties dl {
+.bookself-form-fields dl {
     align-items: center;
     display: grid;
     grid-template-columns: minmax(50px, 100px) 1fr;
     width: 100%;
 }
 
-.bookself-book-properties dt {
+.bookself-form-fields dt {
     font-weight: bold;
 }
 
-.bookself-book-properties dd {
+.bookself-form-fields dd {
     margin: 4px 0;
 }
 
