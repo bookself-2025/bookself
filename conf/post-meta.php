@@ -1,0 +1,84 @@
+<?php
+
+use function Bookself\Bookself\prefixed;
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+return [
+    'post' => [
+        prefixed('author')       => [
+            'object_subtype'    => BOOKSELF_CPT_BOOK,
+            'type'              => 'string',
+            'description'       => '도서 저자',
+            'single'            => true,
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_text_field',
+            'auth_callback'     => null,
+            'show_in_rest'      => false,
+            'revisions_enabled' => false,
+            'get_filter'        => null,
+        ],
+        prefixed('currency')     => [
+            'object_subtype'    => BOOKSELF_CPT_BOOK,
+            'type'              => 'string',
+            'description'       => '가격 단위',
+            'single'            => true,
+            'default'           => 'krw',
+            'sanitize_callback' => 'sanitize_key', // TODO: sanitizer for currency
+            'auth_callback'     => null,
+            'show_in_rest'      => false,
+            'revisions_enabled' => false,
+            'get_filter'        => null,
+        ],
+        prefixed('isbn')         => [
+            'object_subtype'    => BOOKSELF_CPT_BOOK,
+            'type'              => 'string',
+            'description'       => 'ISBN, 10자리 혹은 13자리',
+            'single'            => true,
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_text_field', // TODO: sanitizer for ISBN
+            'auth_callback'     => null,
+            'show_in_rest'      => false,
+            'revisions_enabled' => false,
+            'get_filter'        => null,
+        ],
+        prefixed('press_name')   => [
+            'object_subtype'    => BOOKSELF_CPT_BOOK,
+            'type'              => 'string',
+            'description'       => '도서 출판사 이름',
+            'single'            => true,
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_text_field',
+            'auth_callback'     => null,
+            'show_in_rest'      => false,
+            'revisions_enabled' => false,
+            'get_filter'        => null,
+        ],
+        prefixed('price')        => [
+            'object_subtype'    => BOOKSELF_CPT_BOOK,
+            'type'              => 'string',
+            'description'       => '도서 정가',
+            'single'            => true,
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_text_field', // TODO: sanitizer for price value
+            'auth_callback'     => null,
+            'show_in_rest'      => false,
+            'revisions_enabled' => false,
+            'get_filter'        => null,
+        ],
+        prefixed('release_date') => [
+            'object_subtype'    => BOOKSELF_CPT_BOOK,
+            'type'              => 'string',
+            'description'       => '도서 출간일',
+            'single'            => true,
+            'default'           => '',
+            'sanitize_callback' => 'sanitize_text_field', // TODO: sanitizer for date
+            'auth_callback'     => null,
+            'show_in_rest'      => false,
+            'revisions_enabled' => false,
+            'get_filter'        => null,
+        ],
+    ],
+];

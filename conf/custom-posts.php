@@ -1,0 +1,92 @@
+<?php
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+const BOOKSELF_CPT_BOOK = 'bookself_book';
+
+return [
+    // Begin: bookself_book
+    [
+        // post_type
+        BOOKSELF_CPT_BOOK,
+        // arguments
+        [
+            'label'                           => __('도서', 'bookself'),
+            'labels'                          => [
+                'name'                     => _x('도서', 'bookself label name', 'bookself'),
+                'singular_name'            => _x('도서', 'bookself label singular_name', 'bookself'),
+                'add_new'                  => _x('새로 추가', 'bookself label', 'bookself'),
+                'add_new_item'             => _x('새 도서 추가', 'bookself label', 'bookself'),
+                'edit_item'                => _x('도서 수정', 'bookself label', 'bookself'),
+                'new_item'                 => _x('새 도서', 'bookself label', 'bookself'),
+                'view_item'                => _x('도서 보기', 'bookself label', 'bookself'),
+                'view_items'               => _x('도서 보기', 'bookself label', 'bookself'),
+                'search_items'             => _x('도서 찾기', 'bookself label', 'bookself'),
+                'not_found'                => _x('찾을 수 없음', 'bookself label', 'bookself'),
+                'not_found_in_trash'       => _x('휴지통에서 찾을 수 없음', 'bookself label', 'bookself'),
+                'parent_item_colon'        => _x('상위 항목:', 'bookself label', 'bookself'),
+                'all_items'                => _x('모든 도서', 'bookself label', 'bookself'),
+                'archives'                 => _x('도서 아카이브', 'bookself label', 'bookself'),
+                'attributes'               => _x('속성', 'bookself label', 'bookself'),
+                'insert_into_item'         => _x('이 도서에 삽입', 'bookself label', 'bookself'),
+                'uploaded_to_this_item'    => _x('이 도서로 업로드', 'bookself label', 'bookself'),
+                'featured_image'           => _x('도서 이미지', 'bookself label', 'bookself'),
+                'set_featured_image'       => _x('도서 이미지 설정', 'bookself label', 'bookself'),
+                'remove_featured_image'    => _x('도서 이미지 제거', 'bookself label', 'bookself'),
+                'use_featured_image'       => _x('도서 이미지로 사용', 'bookself label', 'bookself'),
+                'menu_name'                => _x('도서', 'bookself label', 'bookself'),
+                'filter_items_list'        => _x('도서 목록 필터', 'bookself label', 'bookself'),
+                'filter_by_date'           => _x('날짜로 필터', 'bookself label', 'bookself'),
+                'items_list_navigation'    => _x('도서 목록 내비게이션', 'bookself label', 'bookself'),
+                'items_list'               => _x('도서 목록', 'bookself label', 'bookself'),
+                'item_published'           => _x('도서 저장됨', 'bookself label', 'bookself'),
+                'item_published_privately' => _x('도서가 비공개로 저장됨', 'bookself label', 'bookself'),
+                'item_reverted_to_draft'   => _x('도서가 초안으로 돌아감', 'bookself label', 'bookself'),
+                'item_trashed'             => _x('도서 삭제됨', 'bookself label', 'bookself'),
+                'item_scheduled'           => _x('도서 공개 예약됨', 'bookself label', 'bookself'),
+                'item_updated'             => _x('도서 갱신됨', 'bookself label', 'bookself'),
+                'item_link'                => _x('도서 링크', 'bookself label', 'bookself'),
+                'item_link_description'    => _x('도서 링크 설명', 'bookself label', 'bookself'),
+            ],
+            'description'                     => _x('도서 포스트 타입', 'Description of bookself', 'bookself'),
+            'public'                          => false,
+            'hierarchical'                    => false,
+            'exclude_from_search'             => true,
+            'publicly_queryable'              => false,
+            'show_ui'                         => true,
+            'show_in_menu'                    => true,
+            'show_in_nav_menus'               => false,
+            'show_in_admin_bar'               => false,
+            'show_in_rest'                    => false,
+            'rest_base'                       => 'bookself',
+            'rest_namespace'                  => 'wp/v2',
+            'rest_controller_class'           => \WP_REST_Posts_Controller::class,
+            'autosave_rest_controller_class'  => \WP_REST_Autosaves_Controller::class,
+            'revisions_rest_controller_class' => \WP_Rest_Revisions_Controller::class,
+            'late_route_registration'         => false,
+            'menu_position'                   => null,
+            'menu_icon'                       => 'dashicons-book',
+            'capability_type'                 => 'post',
+            'map_meta_cap'                    => true,
+            'supports'                        => ['title', 'editor', 'thumbnail', 'author'],
+            'register_meta_box_cb'            => null,
+            'taxonomies'                      => [],
+            'has_archive'                     => false,
+            'rewrite'                         => [
+                'slug'       => '',
+                'with_front' => false,
+                'feeds'      => false,
+                'pages'      => false,
+                'ep_mask'    => EP_PERMALINK,
+            ],
+            'query_var'                       => false,
+            'can_export'                      => true,
+            'delete_with_user'                => null,
+            'template'                        => [],
+            'template_lock'                   => false,
+        ],
+    ],
+    // End: ttp_threads
+];

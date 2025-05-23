@@ -1,0 +1,44 @@
+/**** 목록 ****/
+.wp-list-table .column-cover_image {
+    width: 68px;
+}
+
+.wp-list-table .column-cover_image img {
+    height: 48px;
+}
+
+/**** 단일 편집 ****/
+.bookself-book-properties dl {
+    align-items: center;
+    display: grid;
+    grid-template-columns: minmax(50px, 100px) 1fr;
+    width: 100%;
+}
+
+.bookself-book-properties dt {
+    font-weight: bold;
+}
+
+.bookself-book-properties dd {
+    margin: 4px 0;
+}
+
+.bookself-book-properties .currency-field {
+    display: flex;
+    max-width: 203px;
+}
+
+.bookself-book-properties .currency-field > select {
+    max-width: unset;
+}
+
+.bookself-book-properties .currency-field > input {
+    flex-shrink: 1;
+    min-width: 0;
+}
+
+@media (max-width: 782px) {
+    .bookself-book-properties .currency-field {
+        max-width: 229px;
+    }
+}
