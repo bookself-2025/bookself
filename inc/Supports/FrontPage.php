@@ -5,12 +5,11 @@ namespace Bookself\Bookself\Supports;
 use Bojaghi\Contract\Support;
 use Bojaghi\ViteScripts\MountNode;
 use Bojaghi\ViteScripts\ViteScript;
+use Bookself\Bookself\Modules\Options;
 
 readonly class FrontPage implements Support
 {
-    public function __construct(
-        private ViteScript $vite,
-    )
+    public function __construct()
     {
     }
 
@@ -42,10 +41,13 @@ readonly class FrontPage implements Support
 
         add_action('bojaghi/clean-pages/head/end', [$this, 'outputExtraHead']);
         add_filter('language_attributes', [$this, 'addExtraAttrsToHTML'], 10, 2);
+    }
 
-        // add_action('wp_before_admin_bar_render', function () {
-        //     remove_action('wp_before_admin_bar_render', 'wp_customize_support_script');
-        // }, 5);
+    public function checkCondition(Options $options): bool
+    {
+        $page = $options->page->get();
+
+        return $page && is_page($page);
     }
 
     /**
@@ -75,8 +77,8 @@ readonly class FrontPage implements Support
 
         $user = wp_get_current_user();
 
-        $this->vite
-            ->add('bookself', 'src/v1/app.tsx')
+        bookselfGet(ViteScript::class)
+            ?->add('bookself', 'src/v1/app.tsx')
             ->vars('bookselfVars', [])
         ;
     }

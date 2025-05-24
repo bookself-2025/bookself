@@ -52,9 +52,9 @@ class Edit implements Module
             [
                 'author'       => __('저자', 'bookself'),
                 'press_name'   => __('출판사', 'bookself'),
-                'price'        => __('정가', 'bookself'),
-                'rate'         => __('평가', 'bookself'),
-                'release_date' => __('출간일', 'bookself'),
+                // 'price'        => __('정가', 'bookself'),
+                // 'rate'         => __('평가', 'bookself'),
+                // 'release_date' => __('출간일', 'bookself'),
                 'own'          => __('보유', 'bookself'),
                 'read'         => __('독서', 'bookself'),
             ],

@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /**** 목록 ****/
 .wp-list-table .column-cover_image {
     width: 68px;
@@ -5,6 +7,17 @@
 
 .wp-list-table .column-cover_image img {
     height: 48px;
+}
+
+/* 좁은 폭의 화면에서 도서 목록 칼럼이 잘 출력되게 수정 */
+@media (max-width: 782px) {
+    .wp-list-table .is-expanded td:not(.hidden).cover_image.column-cover_image {
+        display: table-cell !important;
+    }
+
+    .cover_image.column-cover_image::before {
+        content: "" !important;
+    }
 }
 
 /**** 단일 편집 ****/

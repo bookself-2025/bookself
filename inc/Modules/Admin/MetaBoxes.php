@@ -10,7 +10,9 @@ class MetaBoxes implements Module
 {
     public function __construct()
     {
-        add_action('add_meta_boxes', [$this, 'addMetaBoxes']);
+        $post_type = BOOKSELF_CPT_BOOK;
+
+        add_action("add_meta_boxes_$post_type", [$this, 'addMetaBoxes']);
     }
 
     public function addMetaBoxes(): void

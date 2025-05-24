@@ -7,14 +7,14 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * @uses FrontPage::checkCondition
- * @uses FrontPage::before
- * @uses FrontPage::render
+ * @uses FrontPage::checkCondition()
+ * @uses FrontPage::before()
+ * @uses FrontPage::render()
  */
 return [
     [
-        'name' => 'bookself',
-        'condition' => fn() => is_page('bookself'),
+        'name'      => 'bookself',
+        'condition' => fn() => bookselfCall(FrontPage::class, 'checkCondition'),
         'before'    => function () { bookselfCall(FrontPage::class, 'before'); },
         'body'      => function () { bookselfCall(FrontPage::class, 'render'); },
     ],

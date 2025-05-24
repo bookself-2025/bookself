@@ -26,7 +26,10 @@ return [
         'bojaghi/viteScripts'      => Bojaghi\ViteScripts\ViteScript::class,
         // Plugin side
         'bookself/admin/edit'      => Modules\Admin\Edit::class,
+        'bookself/admin/menu'      => Modules\Admin\Menu::class,
         'bookself/admin/metaBoxes' => Modules\Admin\MetaBoxes::class,
+        'bookself/api/book'        => Modules\Api\Book::class,
+        'bookself/options'         => Modules\Options::class,
         'bookself/postMeta'        => Modules\PostMeta::class,
     ],
     'arguments' => [
@@ -39,6 +42,7 @@ return [
         'bojaghi/template'    => __DIR__ . '/template.php',
         'bojaghi/viteScripts' => __DIR__ . '/vite-scripts.php',
         // Plugin side
+        'bookself/options'    => __DIR__ . '/options.php',
         'bookself/postMeta'   => __DIR__ . '/post-meta.php',
     ],
     'modules'   => [
@@ -53,16 +57,17 @@ return [
                 'bojaghi/customTax',
                 // Plugin side
                 'bookself/postMeta',
+                'bookself/options',
             ],
             Continy::PR_DEFAULT => [
                 // Bojaghi side
                 'bojaghi/scripts',
                 // Plugin side
                 'bookself/admin/metaBoxes',
+                'bookself/admin/menu',
             ],
             Continy::PR_LOW     => [
                 // Bojaghi side
-
                 // Plugin side
                 'bookself/admin/edit',
             ],
@@ -74,6 +79,7 @@ return [
         ],
         'rest_api_init' => [
             Continy::PR_DEFAULT => [
+                'bookself/api/book',
             ],
         ],
     ],
