@@ -69,7 +69,9 @@
         "bojaghi/template": "^1.0",
         "bojaghi/custom-taxonomies": "^1.0",
         "bojaghi/seed-objects": "^1.0",
-        "bojaghi/fields-render": "^1.0"
+        "bojaghi/fields-render": "^1.0",
+        "bojaghi/vite-scripts": "^1.2",
+        "bojaghi/clean-pages": "^1.0"
     },
-    "version": "0.2.0"
+    "version": "0.3.0"
 }

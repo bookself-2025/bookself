@@ -68,6 +68,18 @@ return [
             'revisions_enabled' => false,
             'get_filter'        => null,
         ],
+        prefixed('rate') => [
+            'object_subtype'    => BOOKSELF_CPT_BOOK,
+            'type'              => 'integer',
+            'description'       => '평가. 좋으면 양수, 싫으면 음수, 중립은 0',
+            'single'            => true,
+            'default'           => 0,
+            'sanitize_callback' => fn($value) => intval($value),
+            'auth_callback'     => null,
+            'show_in_rest'      => false,
+            'revisions_enabled' => false,
+            'get_filter'        => null,
+        ],
         prefixed('release_date') => [
             'object_subtype'    => BOOKSELF_CPT_BOOK,
             'type'              => 'string',

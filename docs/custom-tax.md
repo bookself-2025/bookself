@@ -4,7 +4,7 @@
 
 - 소유 상태 (own)
     - 소장 한 책 own
-    - 빌맅 채 borrowed
+    - 빌린 채 borrowed
     - 판 책 sold
     - 살 책 wish
 - 독서 상태 (read)

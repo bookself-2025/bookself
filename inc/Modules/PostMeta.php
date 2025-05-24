@@ -12,6 +12,7 @@ use function Bookself\Bookself\prefixed;
  * @property-read Meta $isbn
  * @property-read Meta $pressName
  * @property-read Meta $price
+ * @property-read Meta $rate
  * @property-read Meta $releaseDate
  */
 class PostMeta extends CustomFieldsBase
@@ -24,6 +25,7 @@ class PostMeta extends CustomFieldsBase
             'isbn'        => prefixed('isbn'),
             'pressName'   => prefixed('press_name'),
             'price'       => prefixed('price'),
+            'rate'        => prefixed('rate'),
             'releaseDate' => prefixed('release_date'),
             default       => '',
         };

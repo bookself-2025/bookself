@@ -27,6 +27,7 @@ readonly class BookSupport implements Support
             'isbn'         => $this->postMeta->isbn->getKey(),
             'press_name'   => $this->postMeta->pressName->getKey(),
             'price'        => $this->postMeta->price->getKey(),
+            'rate'         => $this->postMeta->rate->getKey(),
             'release_date' => $this->postMeta->releaseDate->getKey(),
         ];
 
@@ -36,6 +37,7 @@ readonly class BookSupport implements Support
             'isbn'         => $this->postMeta->isbn->get($post),
             'press_name'   => $this->postMeta->pressName->get($post),
             'price'        => $this->postMeta->price->get($post),
+            'rate'         => $this->postMeta->rate->get($post),
             'release_date' => $this->postMeta->releaseDate->get($post),
         ];
 
@@ -77,6 +79,7 @@ readonly class BookSupport implements Support
             $this->postMeta->isbn->getKey(),
             $this->postMeta->pressName->getKey(),
             $this->postMeta->price->getKey(),
+            $this->postMeta->rate->getKey(),
             $this->postMeta->releaseDate->getKey(),
         ];
 

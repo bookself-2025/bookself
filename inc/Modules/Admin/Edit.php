@@ -53,6 +53,7 @@ class Edit implements Module
                 'author'       => __('저자', 'bookself'),
                 'press_name'   => __('출판사', 'bookself'),
                 'price'        => __('정가', 'bookself'),
+                'rate'         => __('평가', 'bookself'),
                 'release_date' => __('출간일', 'bookself'),
                 'own'          => __('보유', 'bookself'),
                 'read'         => __('독서', 'bookself'),
@@ -134,6 +135,10 @@ class Edit implements Module
                 );
                 break;
 
+            case 'rate':
+                echo esc_html($postMeta->rate->get($postId));
+                break;
+
             case 'release_date':
                 echo esc_html($postMeta->releaseDate->get($postId));
                 break;
@@ -163,7 +168,7 @@ class Edit implements Module
             !$update ||
             !$postId ||
             BOOKSELF_CPT_BOOK !== $post->post_type ||
-            !wp_verify_nonce($_REQUEST['_bookself_nonce'] ?? '', 'bookself-book-properties')
+            !wp_verify_nonce($_REQUEST['_bookself_book_properties'] ?? '', 'bookself-book-properties')
         ) {
             return;
         }
