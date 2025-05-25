@@ -71,7 +71,8 @@
         "bojaghi/seed-objects": "^1.0",
         "bojaghi/fields-render": "^1.0",
         "bojaghi/vite-scripts": "^1.2",
-        "bojaghi/clean-pages": "^1.0"
+        "bojaghi/clean-pages": "^1.0",
+      "ext-intl": "*"
     },
-    "version": "0.4.0"
+    "version": "0.5.0"
 }

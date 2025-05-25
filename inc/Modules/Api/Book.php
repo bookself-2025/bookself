@@ -30,8 +30,15 @@ class Book implements Module
 
     public function query(WP_REST_Request $request): WP_REST_Response
     {
-        $result = bookselfCall(BookSupport::class, 'query', [$request]);
+        $result = bookselfCall(BookSupport::class, 'query');
 
-        return new WP_REST_Response($result);
+        return new WP_REST_Response(
+            $result['items'],
+            200,
+            [
+                'X-WP-Total'      => $result['total'],
+                'X-WP-TotalPages' => $result['totalpages'],
+            ],
+        );
     }
 }

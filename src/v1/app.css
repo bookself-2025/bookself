@@ -1,3 +1,15 @@
 @import "tailwindcss";
+
 @plugin "daisyui";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+body.wp-admin-bar.logged-in #bookself-root .bookself-top-level-container {
+    width: 100vw;
+    min-height: calc(100vh - 32px);
+}
+
+@media (max-width: 782px) {
+    body.wp-admin-bar.logged-in #bookself-root .bookself-top-level-container {
+        height: calc(100vh - 46px);
+    }
+}

@@ -3,12 +3,17 @@
 namespace Bookself\Bookself\Supports\Api;
 
 use Bojaghi\Contract\Support;
+use Bookself\Bookself\Objects\Book as ObjectBook;
 use WP_Query;
-use WP_REST_Request;
 
 class Book implements Support
 {
-    public function query(WP_REST_Request $request): array
+    /**
+     * @param string|array $args
+     *
+     * @return array{items: array, total: int, totalpages: int}
+     */
+    public function query(string|array $args = ''): array
     {
         $query = new WP_Query(
             [
@@ -19,6 +24,12 @@ class Book implements Support
             ],
         );
 
-        return $query->posts;
+        $items = array_map(fn($post) => ObjectBook::get($post), $query->posts);
+
+        return [
+            'items'      => $items,
+            'total'      => $query->found_posts,
+            'totalpages' => $query->max_num_pages,
+        ];
     }
 }

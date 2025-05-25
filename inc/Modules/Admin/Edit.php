@@ -4,6 +4,7 @@ namespace Bookself\Bookself\Modules\Admin;
 
 use Bojaghi\Contract\Module;
 use Bookself\Bookself\Modules\PostMeta;
+use Bookself\Bookself\Objects\Book;
 use Bookself\Bookself\Supports\Admin\BookSupport;
 use WP_Post;
 use WP_Screen;
@@ -128,11 +129,7 @@ class Edit implements Module
                 break;
 
             case 'price':
-                echo esc_html(
-                // TODO: format price value by function
-                    $postMeta->currency->get($postId) . ' ' .
-                    $postMeta->price->get($postId),
-                );
+                echo esc_html(Book::formatPrice($postId));
                 break;
 
             case 'rate':

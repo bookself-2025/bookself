@@ -79,7 +79,12 @@ readonly class FrontPage implements Support
 
         bookselfGet(ViteScript::class)
             ?->add('bookself', 'src/v1/app.tsx')
-            ->vars('bookselfVars', [])
+            ->vars('bookselfVars', [
+                'api' => [
+                    'baseUrl' => home_url('/wp-json/bookself/v1'),
+                    'nonce'   => wp_create_nonce('wp_rest'),
+                ],
+            ])
         ;
     }
 }

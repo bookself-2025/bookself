@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a5bf5b909a9a98255541a2bbdbfc3b35",
+    "content-hash": "9762e397b7ce4a879ba39397ebf1f81c",
     "packages": [
         {
             "name": "bojaghi/clean-pages",
-            "version": "1.0.3",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bojaghi/clean-pages.git",
-                "reference": "ab23b026aa09feaf6cdb850b5ad68a2dc6320395"
+                "reference": "5d95ab05b011bd0b21e61d6ba06e5d128ecfc3cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bojaghi/clean-pages/zipball/ab23b026aa09feaf6cdb850b5ad68a2dc6320395",
-                "reference": "ab23b026aa09feaf6cdb850b5ad68a2dc6320395",
+                "url": "https://api.github.com/repos/bojaghi/clean-pages/zipball/5d95ab05b011bd0b21e61d6ba06e5d128ecfc3cc",
+                "reference": "5d95ab05b011bd0b21e61d6ba06e5d128ecfc3cc",
                 "shasum": ""
             },
             "require": {
@@ -44,9 +44,9 @@
             "homepage": "https://github.com/bojaghi/clean-pages",
             "support": {
                 "issues": "https://github.com/bojaghi/clean-pages/issues",
-                "source": "https://github.com/bojaghi/clean-pages/tree/1.0.3"
+                "source": "https://github.com/bojaghi/clean-pages/tree/1.0.5"
             },
-            "time": "2025-05-24T06:58:22+00:00"
+            "time": "2025-05-25T14:29:03+00:00"
         },
         {
             "name": "bojaghi/continy",
@@ -2501,7 +2501,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.2"
+        "php": ">=8.2",
+        "ext-intl": "*"
     },
     "platform-dev": {},
     "plugin-api-version": "2.6.0"

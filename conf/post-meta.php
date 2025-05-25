@@ -26,7 +26,7 @@ return [
             'description'       => '가격 단위',
             'single'            => true,
             'default'           => 'krw',
-            'sanitize_callback' => 'sanitize_key', // TODO: sanitizer for currency
+            'sanitize_callback' => 'sanitize_key',
             'auth_callback'     => null,
             'show_in_rest'      => false,
             'revisions_enabled' => false,
@@ -38,7 +38,7 @@ return [
             'description'       => 'ISBN, 10자리 혹은 13자리',
             'single'            => true,
             'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field', // TODO: sanitizer for ISBN
+            'sanitize_callback' => fn($value) => preg_replace('/[^0-9]/', '', $value),
             'auth_callback'     => null,
             'show_in_rest'      => false,
             'revisions_enabled' => false,
@@ -62,13 +62,13 @@ return [
             'description'       => '도서 정가',
             'single'            => true,
             'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field', // TODO: sanitizer for price value
+            'sanitize_callback' => fn($value) => preg_replace('/[^0-9]/', '', $value),
             'auth_callback'     => null,
             'show_in_rest'      => false,
             'revisions_enabled' => false,
             'get_filter'        => null,
         ],
-        prefixed('rate') => [
+        prefixed('rate')         => [
             'object_subtype'    => BOOKSELF_CPT_BOOK,
             'type'              => 'integer',
             'description'       => '평가. 좋으면 양수, 싫으면 음수, 중립은 0',
@@ -86,7 +86,7 @@ return [
             'description'       => '도서 출간일',
             'single'            => true,
             'default'           => '',
-            'sanitize_callback' => 'sanitize_text_field', // TODO: sanitizer for date
+            'sanitize_callback' => fn($value) => preg_match('/^\d{4}-\d{2}-\d{2}$/', $value) ? $value : '',
             'auth_callback'     => null,
             'show_in_rest'      => false,
             'revisions_enabled' => false,
