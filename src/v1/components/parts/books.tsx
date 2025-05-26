@@ -1,9 +1,16 @@
 import useBooks from '@/v1/components/hooks/useBooks'
 import Book from '@/v1/components/parts/book'
+import useBookselfContext from '@/v1/libs/context'
+import {ActionType} from '@/v1/libs/reducer'
+import {BookType} from '@/v1/libs/types'
 import {cn} from '@/v1/libs/utils'
 
 export default function Books() {
     const {data, isLoading} = useBooks()
+
+    const {
+        dispatch,
+    } = useBookselfContext()
 
     if (isLoading) {
         return <>불러오는 중</>
@@ -20,12 +27,18 @@ export default function Books() {
     }
 
     return (
-        <div className={cn('books-list')}>
+        <div className={cn('books-list', 'px-4')}>
             <h1 className={cn('text-2xl font-bold mt-4')}>
                 내 책
             </h1>
-            <div className="flex flex-row flex-wrap">
-                {data.map((book) => (<Book key={book.id} book={book} />))}
+            <div className="flex flex-row flex-wrap gap-4 mt-4">
+                {data.map((book) => (
+                    <Book
+                        key={book.id}
+                        book={book}
+                        onClickBook={(book: BookType) => dispatch({type: ActionType.SET_BOOK, payload: book})}
+                    />
+                ))}
             </div>
         </div>
     )

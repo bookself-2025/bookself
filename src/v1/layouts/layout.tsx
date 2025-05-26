@@ -1,11 +1,15 @@
 import Footer from '@/v1/layouts/footer'
 import Header from '@/v1/layouts/header'
 import {cn} from '@/v1/libs/utils'
-import {PropsWithChildren} from 'react'
+import {HTMLAttributes} from 'react'
 
-export default function Layout(props: PropsWithChildren) {
+type Props = HTMLAttributes<HTMLDivElement>
+
+export default function Layout(props: Props) {
     const {
+        className,
         children,
+        ...rest
     } = props
 
     return (
@@ -13,7 +17,9 @@ export default function Layout(props: PropsWithChildren) {
             className={cn(
                 'bookself-top-level-container',
                 'flex flex-col',
+                className,
             )}
+            {...rest}
         >
             <Header />
             <main

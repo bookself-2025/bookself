@@ -3,50 +3,49 @@ import {BookType} from '@/v1/libs/types'
 import {cn} from '@/v1/libs/utils'
 import {forwardRef, HTMLAttributes} from 'react'
 
-type Props = {
+type Props = HTMLAttributes<HTMLDivElement> & {
     book: BookType
-} & HTMLAttributes<HTMLDivElement>
+    onClickBook?: (book: BookType) => void
+}
 
 const Book = forwardRef<HTMLDivElement, Props>((props: Props, ref) => {
     const {
         book,
         className,
+        onClickBook,
         ...rest
     } = props
-
-    const onClick = () => {
-        alert(`${book.title}을 클릭했습니다.`)
-    }
 
     return (
         <div
             className={cn(
-                'book-item',
-                'mt-2',
-                'p-2',
-                'w-full md:w-1/2 lg:w-1/4',
+                'book-item card bg-base-100 shadow-sm',
+                'w-full md:w-96',
                 className,
             )}
             ref={ref}
             {...rest}
         >
-            <div className="flex gap-4">
-                <figure className="max-w-1/2">
-                    <BookImage
-                        alt={`${book.title}의 커버 이미지`}
-                        className={'hover:cursor-pointer'}
-                        images={book.coverImage}
-                        onClick={() => onClick()}
-                    />
-                </figure>
-                <div>
-                    <h2
-                        className={'font-bold text-primary text-lg hover:cursor-pointer'}
-                        onClick={() => onClick()}
+            <figure>
+                <BookImage
+                    alt={`${book.title}의 커버 이미지`}
+                    images={book.coverImage}
+                />
+            </figure>
+            <div className="card-body">
+                <h2 className="card-title">
+                    {book.title}
+                </h2>
+                <p className="">
+                    저자: {book.author} 출판사: {book.pressName}
+                </p>
+                <div className="card-actions justify-end mt-8">
+                    <button
+                        className="btn btn-primary"
+                        onClick={() => onClickBook && onClickBook(book)}
                     >
-                        {book.title}
-                    </h2>
-                    <p className={''}>{book.author}</p>
+                        자세히 보기
+                    </button>
                 </div>
             </div>
         </div>

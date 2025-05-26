@@ -71,7 +71,7 @@ readonly class BookSupport implements Support
         );
     }
 
-    public function saveProperties(int $postId, array $data): void
+    public function save(int $postId, array $data): void
     {
         $keys = [
             $this->postMeta->author->getKey(),
@@ -86,6 +86,12 @@ readonly class BookSupport implements Support
         foreach ($keys as $key) {
             if (isset($data[$key])) {
                 $this->postMeta->{$key}->update($postId, $data[$key]);
+            }
+        }
+
+        foreach ([BOOKSELF_TAX_OWN, BOOKSELF_TAX_READ] as $taxonomy) {
+            if (isset($data[$taxonomy])) {
+                wp_set_post_terms($postId, $data[$taxonomy], $taxonomy);
             }
         }
     }

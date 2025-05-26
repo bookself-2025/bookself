@@ -1,0 +1,90 @@
+.bottom-sheet--backdrop {
+    width: 100vw;
+    height: 100vh;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 50;
+
+    --effect-duration: 0.3s;
+}
+
+.bottom-sheet--backdrop.is-active {
+    animation-name: fade-in;
+    animation-duration: var(--effect-duration);
+    animation-fill-mode: forwards;
+}
+
+.bottom-sheet--backdrop.is-closing {
+    animation-name: fade-out;
+    animation-duration: var(--effect-duration);
+    animation-fill-mode: forwards;
+}
+
+.bottom-sheet--backdrop:not(.is-active):not(.is-closing) {
+    display: none;
+}
+
+.bottom-sheet--backdrop.is-active .bottom-sheet--main {
+    animation-name: slide-up;
+    animation-duration: var(--effect-duration);
+    animation-fill-mode: forwards;
+}
+
+.bottom-sheet--backdrop.is-closing .bottom-sheet--main {
+    animation-name: slide-down;
+    animation-duration: var(--effect-duration);
+    animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-out {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slide-up {
+    from {
+        transform: translate(0, 100%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-down {
+    from {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+    to {
+        transform: translate(0, 100%);
+        opacity: 0;
+    }
+}
+
+.wp-admin-bar.logged-in .bottom-sheet--backdrop {
+    top: var(--admin-bar-height);
+}
+
+@media (max-width: 782px) {
+    .wp-admin-bar.logged-in .bottom-sheet--backdrop {
+        top: var(--admin-bar-mobile-height);
+    }
+}
+

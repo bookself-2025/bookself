@@ -3,13 +3,19 @@
 @plugin "daisyui";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-body.wp-admin-bar.logged-in #bookself-root .bookself-top-level-container {
+.bookself-top-level-container {
+    min-height: 100vh;
     width: 100vw;
-    min-height: calc(100vh - 32px);
+    --admin-bar-height: 32px;
+    --admin-bar-mobile-height: 46px;
+}
+
+.wp-admin-bar.logged-in .bookself-top-level-container {
+    min-height: calc(100vh - var(--admin-bar-height));
 }
 
 @media (max-width: 782px) {
-    body.wp-admin-bar.logged-in #bookself-root .bookself-top-level-container {
-        height: calc(100vh - 46px);
+    .wp-admin-bar.logged-in .bookself-top-level-container {
+        min-height: calc(100vh - var(--admin-bar-mobile-height));
     }
 }

@@ -22,7 +22,9 @@ type OwnType = string
 
 type ReadType = string
 
-type StateType = {}
+type StateType = {
+    book?: BookType
+}
 
 export type{
     BookType,

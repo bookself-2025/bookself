@@ -44,6 +44,9 @@ class Edit implements Module
             $date = null;
         }
 
+        // Not author in our land
+        $columns['author'] = __('소유자', 'bookself');
+
         return array_merge(
             $cb ? ['cb' => $cb] : [],
             [
@@ -51,13 +54,13 @@ class Edit implements Module
             ],
             $columns,
             [
-                'author'       => __('저자', 'bookself'),
-                'press_name'   => __('출판사', 'bookself'),
+                'book_author' => __('저자', 'bookself'),
+                'press_name'  => __('출판사', 'bookself'),
                 // 'price'        => __('정가', 'bookself'),
                 // 'rate'         => __('평가', 'bookself'),
                 // 'release_date' => __('출간일', 'bookself'),
-                'own'          => __('보유', 'bookself'),
-                'read'         => __('독서', 'bookself'),
+                'own'         => __('보유', 'bookself'),
+                'read'        => __('독서', 'bookself'),
             ],
             $date ? ['date' => $date] : [],
         );
@@ -120,7 +123,7 @@ class Edit implements Module
                 }
                 break;
 
-            case 'author':
+            case 'book_author':
                 echo esc_html($postMeta->author->get($postId));
                 break;
 
@@ -157,7 +160,7 @@ class Edit implements Module
      *
      * @return void
      *
-     * @uses BookSupport::saveProperties
+     * @uses BookSupport::save()
      */
     public function savePost(int $postId, WP_Post $post, bool $update): void
     {
@@ -170,7 +173,7 @@ class Edit implements Module
             return;
         }
 
-        bookselfCall(BookSupport::class, 'saveProperties', [$postId, $_POST]);
+        bookselfCall(BookSupport::class, 'save', [$postId, $_POST]);
     }
 
     public function updatedMessages(array $messages): array
