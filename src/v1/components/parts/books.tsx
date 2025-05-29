@@ -27,11 +27,15 @@ export default function Books() {
     }
 
     return (
-        <div className={cn('books-list', 'px-4')}>
+        <div className={cn('books-list', 'px-6')}>
             <h1 className={cn('text-2xl font-bold mt-4')}>
                 내 책
             </h1>
-            <div className="flex flex-row flex-wrap gap-4 mt-4">
+            <div className={cn(
+                'mt-6 px-2',
+                'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
+                'gap-x-2 gap-y-8 md:gap-x-6',
+            )}>
                 {data.map((book) => (
                     <Book
                         key={book.id}

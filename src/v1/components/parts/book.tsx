@@ -20,28 +20,29 @@ const Book = forwardRef<HTMLDivElement, Props>((props: Props, ref) => {
         <div
             className={cn(
                 'book-item card bg-base-100 shadow-sm',
-                'w-full md:w-96',
+                'w-full',
                 className,
             )}
             ref={ref}
             {...rest}
         >
-            <figure>
+            <figure className="">
                 <BookImage
                     alt={`${book.title}의 커버 이미지`}
+                    className="w-1/3 h-auto mx-auto"
                     images={book.coverImage}
                 />
             </figure>
             <div className="card-body">
-                <h2 className="card-title">
+                <h2 className="card-title opacity-80">
                     {book.title}
                 </h2>
-                <p className="">
+                <p className="opacity-75">
                     저자: {book.author} 출판사: {book.pressName}
                 </p>
                 <div className="card-actions justify-end mt-8">
                     <button
-                        className="btn btn-primary"
+                        className="btn btn-neutral"
                         onClick={() => onClickBook && onClickBook(book)}
                     >
                         자세히 보기

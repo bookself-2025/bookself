@@ -18,9 +18,16 @@ type ImageType = {
     height: number,
 }
 
-type OwnType = string
+type OwnType =
+    | 'own'
+    | 'borrow'
+    | 'sold'
+    | 'wish'
 
-type ReadType = string
+type ReadType =
+    | 'not-read'
+    | 'reading'
+    | 'read'
 
 type StateType = {
     book?: BookType

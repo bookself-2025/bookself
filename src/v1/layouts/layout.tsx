@@ -22,11 +22,7 @@ export default function Layout(props: Props) {
             {...rest}
         >
             <Header />
-            <main
-                className={cn(
-                    'grow',
-                )}
-            >
+            <main className={cn('grow')}>
                 {children}
             </main>
             <Footer />

@@ -10,6 +10,7 @@ class Menu implements Module
     public function __construct()
     {
         add_action('admin_menu', [$this, 'addAdminMenu']);
+        add_action('admin_menu', [$this, 'removeBuiltinMenus'], 9999);
     }
 
     public function addAdminMenu(): void
@@ -21,5 +22,11 @@ class Menu implements Module
             BOOKSELF_SETTINGS_PAGE,
             fn() => bookselfCall(Settings::class, 'render'),
         );
+    }
+
+    public function removeBuiltinMenus(): void
+    {
+        // remove_menu_page('edit.php');
+        // remove_menu_page('edit-comments.php');
     }
 }

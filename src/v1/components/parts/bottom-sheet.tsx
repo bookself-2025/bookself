@@ -75,11 +75,12 @@ const BottomSheet = (props: Props) => {
             <div
                 className={cn(
                     'bottom-sheet--main',
-                    'bg-neutral-200',
-                    'fixed bottom-0 left-1/2 transform -translate-x-1/2',
-                    'w-10/12 md:w-1/2',
-                    'rounded-tl-3xl rounded-tr-3xl',
-                    'z-50',
+                    'bg-neutral-200',                                   // background
+                    'fixed bottom-0 left-1/2 transform -translate-x-1/2', // fixed position
+                    'w-10/12 sm:w-2/3 lg:w-1/2',                          // width
+                    'max-h-80vh overflow-y-auto',                         // height
+                    'rounded-tl-3xl rounded-tr-3xl',                      // roundness
+                    'z-50',                                               // z-index
                     className,
                 )}
                 ref={ref}
@@ -104,7 +105,7 @@ const BottomSheet = (props: Props) => {
                 <div
                     className={cn(
                         'bottom-sheet--content',
-                        'px-2 py-4',
+                        'p-6',
                     )}
                 >
                     {children}

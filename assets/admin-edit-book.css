@@ -36,6 +36,11 @@
     margin: 4px 0;
 }
 
+.bookself-form-fields dd > input {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 .bookself-book-properties .currency-field {
     display: flex;
     max-width: 203px;
