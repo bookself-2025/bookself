@@ -22,7 +22,7 @@ readonly class FrontPage implements Support
      */
     public function addExtraAttrsToHTML(string $output): string
     {
-        return $output . ' data-theme="light"';
+        return $output . ' data-theme="nord"';
     }
 
     /**
@@ -41,6 +41,7 @@ readonly class FrontPage implements Support
 
         add_action('bojaghi/clean-pages/head/end', [$this, 'outputExtraHead']);
         add_filter('language_attributes', [$this, 'addExtraAttrsToHTML'], 10, 2);
+        add_filter('bojaghi/clean-pages/head/meta/viewport', fn() => 'width=device-width, initial-scale=1, viewport-fit=cover', 10, 2);
     }
 
     public function checkCondition(Options $options): bool

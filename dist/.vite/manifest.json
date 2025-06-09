@@ -1,11 +1,58 @@
 {
+  "_tslib.es6-DOJN6KQt.js": {
+    "file": "assets/tslib.es6-DOJN6KQt.js",
+    "name": "tslib.es6"
+  },
+  "node_modules/.pnpm/@undecaf+zbar-wasm@0.11.0/node_modules/@undecaf/zbar-wasm/dist/index.mjs": {
+    "file": "assets/index-BY-99T_0.mjs",
+    "src": "node_modules/.pnpm/@undecaf+zbar-wasm@0.11.0/node_modules/@undecaf/zbar-wasm/dist/index.mjs"
+  },
+  "node_modules/.pnpm/@undecaf+zbar-wasm@0.11.0/node_modules/@undecaf/zbar-wasm/dist/zbar.wasm": {
+    "file": "assets/zbar-BSn7mpZR.wasm",
+    "src": "node_modules/.pnpm/@undecaf+zbar-wasm@0.11.0/node_modules/@undecaf/zbar-wasm/dist/zbar.wasm"
+  },
   "src/v1/app.tsx": {
-    "file": "assets/app-DatIjQMW.js",
+    "file": "assets/app-DDtnOlzu.js",
     "name": "app",
     "src": "src/v1/app.tsx",
     "isEntry": true,
+    "dynamicImports": [
+      "src/v1/routes/books.tsx?tsr-split=component",
+      "src/v1/routes/add-book.tsx?tsr-split=component",
+      "src/v1/routes/index.tsx?tsr-split=component"
+    ],
     "css": [
-      "assets/app-Qe0P1VyK.css"
+      "assets/app-BCfAd0tl.css"
     ]
+  },
+  "src/v1/routes/add-book.tsx?tsr-split=component": {
+    "file": "assets/add-book-DX4jHJ-6.js",
+    "name": "add-book",
+    "src": "src/v1/routes/add-book.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "src/v1/app.tsx",
+      "_tslib.es6-DOJN6KQt.js"
+    ],
+    "assets": [
+      "assets/index-BY-99T_0.mjs",
+      "assets/zbar-BSn7mpZR.wasm"
+    ]
+  },
+  "src/v1/routes/books.tsx?tsr-split=component": {
+    "file": "assets/books-DBupHzsm.js",
+    "name": "books",
+    "src": "src/v1/routes/books.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "src/v1/app.tsx",
+      "_tslib.es6-DOJN6KQt.js"
+    ]
+  },
+  "src/v1/routes/index.tsx?tsr-split=component": {
+    "file": "assets/index-D_Wxvt_x.js",
+    "name": "index",
+    "src": "src/v1/routes/index.tsx?tsr-split=component",
+    "isDynamicEntry": true
   }
 }

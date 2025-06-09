@@ -2,6 +2,8 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react-swc'
 import path from 'path'
 import {defineConfig} from 'vite'
+import {TanStackRouterVite} from '@tanstack/router-plugin/vite'
+import mkcert from 'vite-plugin-mkcert'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -20,8 +22,17 @@ export default defineConfig({
     },
     publicDir: false,
     plugins: [
+        // Please make sure that '@tanstack/router-plugin' is passed before '@vitejs/plugin-react'
+        TanStackRouterVite({
+            target: 'react',
+            autoCodeSplitting: true,
+            // File-based router setup
+            routesDirectory: './src/v1/routes',
+            generatedRouteTree: './src/v1/route-tree.gen.ts',
+        }),
         react(),
         tailwindcss(),
+        mkcert(),
     ],
     resolve: {
         alias: {
@@ -29,6 +40,7 @@ export default defineConfig({
         },
     },
     server: {
+        host: true,
         cors: {
             origin: '*',
         },

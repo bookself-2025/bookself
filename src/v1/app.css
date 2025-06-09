@@ -1,7 +1,8 @@
 @import "tailwindcss";
-
-@plugin "daisyui";
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@plugin "daisyui" {
+    themes: nord --default, business --dark;
+}
+@custom-variant dark (&:where([data-theme=business], [data-theme=business] *));
 
 .bookself-top-level-container {
     min-height: 100vh;

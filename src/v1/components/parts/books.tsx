@@ -1,4 +1,4 @@
-import useBooks from '@/v1/components/hooks/useBooks'
+import useBooks from '@/v1/components/hooks/use-books'
 import Book from '@/v1/components/parts/book'
 import useBookselfContext from '@/v1/libs/context'
 import {ActionType} from '@/v1/libs/reducer'
@@ -31,11 +31,13 @@ export default function Books() {
             <h1 className={cn('text-2xl font-bold mt-4')}>
                 내 책
             </h1>
-            <div className={cn(
-                'mt-6 px-2',
-                'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
-                'gap-x-2 gap-y-8 md:gap-x-6',
-            )}>
+            <div
+                className={cn(
+                    'mt-6 px-2',
+                    'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4',
+                    'gap-x-2 gap-y-8 md:gap-x-6',
+                )}
+            >
                 {data.map((book) => (
                     <Book
                         key={book.id}
