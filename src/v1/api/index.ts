@@ -1,11 +1,12 @@
-import {initApi as _initApi} from './init'
-import {query as bookQuery} from './book'
+import {_query, _update} from './book'
+import {_initApi} from './init'
 
 namespace ApiV1 {
     export const initApi = _initApi
 
     export namespace Book {
-        export const query = bookQuery
+        export const query = _query
+        export const update = _update
     }
 }
 

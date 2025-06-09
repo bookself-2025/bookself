@@ -4,10 +4,11 @@ import {useReducer} from 'react'
 
 enum ActionType {
     SET_BOOK = 'SET_BOOK',
+    SET_BOOKS = 'SET_BOOKS',
 }
 
 type Action =
-    | { type: ActionType, payload: BookType | undefined };
+    | { type: ActionType.SET_BOOK, payload: BookType | undefined }
 
 function reducer(prevState: StateType, action: Action): StateType {
     const {type, payload} = action

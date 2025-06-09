@@ -1,15 +1,20 @@
 type BookType = {
     id: number
     author: string
-    coverImage: { [key: string]: ImageType }
+    currency: string
     isbn: string
     own: OwnType
     pressName: string
     price: string
-    releaseDate: string
     rate: number
     read: ReadType
+    releaseDate: string
+    thumbnailId: number
     title: string
+
+    // read-only
+    coverImage: { [key: string]: ImageType }
+    formattedPrice: string
 }
 
 type ImageType = {

@@ -1,13 +1,28 @@
 let baseUrl: string = '',
     nonce: string = ''
 
-function initApi(_baseUrl: string, _nonce: string): void {
+function _initApi(_baseUrl: string, _nonce: string): void {
     baseUrl = _baseUrl
     nonce = _nonce
 }
 
+async function request(endpoint: string, init?: RequestInit) {
+    const r = await fetch(endpoint, {
+        ...init,
+        headers: {
+            'Origin': location.origin,
+            'Content-Type': 'application/json',
+            'X-WP-Nonce': nonce,
+            ...init?.headers,
+        },
+    })
+
+    return await r.json()
+}
+
 export {
-    initApi,
+    _initApi,
     baseUrl,
     nonce,
+    request,
 }
