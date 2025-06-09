@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9762e397b7ce4a879ba39397ebf1f81c",
+    "content-hash": "3a151a287c75be53615b6c71780b1f9f",
     "packages": [
         {
             "name": "bojaghi/clean-pages",
@@ -312,19 +312,20 @@
         },
         {
             "name": "bojaghi/helper",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bojaghi/helper.git",
-                "reference": "e84223e627e5f86e6e4b1986f42b506c22071e82"
+                "reference": "9ce3e051abf504ab3149a72b0d5e25f77c96c4cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bojaghi/helper/zipball/e84223e627e5f86e6e4b1986f42b506c22071e82",
-                "reference": "e84223e627e5f86e6e4b1986f42b506c22071e82",
+                "url": "https://api.github.com/repos/bojaghi/helper/zipball/9ce3e051abf504ab3149a72b0d5e25f77c96c4cf",
+                "reference": "9ce3e051abf504ab3149a72b0d5e25f77c96c4cf",
                 "shasum": ""
             },
             "require": {
+                "bojaghi/continy": "^1.1",
                 "php": ">=8.0"
             },
             "require-dev": {
@@ -352,9 +353,9 @@
             "homepage": "https://github.com/bojaghi/helper",
             "support": {
                 "issues": "https://github.com/bojaghi/helper/issues",
-                "source": "https://github.com/bojaghi/helper/tree/1.1.0"
+                "source": "https://github.com/bojaghi/helper/tree/1.2.0"
             },
-            "time": "2024-12-19T01:41:49+00:00"
+            "time": "2025-06-02T16:43:06+00:00"
         },
         {
             "name": "bojaghi/scripts",
@@ -814,16 +815,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v5.4.0",
+            "version": "v5.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "447a020a1f875a434d62f2a401f53b82a396e494"
+                "reference": "ae59794362fe85e051a58ad36b289443f57be7a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/447a020a1f875a434d62f2a401f53b82a396e494",
-                "reference": "447a020a1f875a434d62f2a401f53b82a396e494",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/ae59794362fe85e051a58ad36b289443f57be7a9",
+                "reference": "ae59794362fe85e051a58ad36b289443f57be7a9",
                 "shasum": ""
             },
             "require": {
@@ -866,9 +867,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v5.4.0"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v5.5.0"
             },
-            "time": "2024-12-30T11:07:19+00:00"
+            "time": "2025-05-31T08:24:38+00:00"
         },
         {
             "name": "phar-io/manifest",
