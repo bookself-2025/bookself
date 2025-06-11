@@ -12,7 +12,7 @@
     "src": "node_modules/.pnpm/@undecaf+zbar-wasm@0.11.0/node_modules/@undecaf/zbar-wasm/dist/zbar.wasm"
   },
   "src/v1/app.tsx": {
-    "file": "assets/app-DDtnOlzu.js",
+    "file": "assets/app-CAbOzbqn.js",
     "name": "app",
     "src": "src/v1/app.tsx",
     "isEntry": true,
@@ -22,11 +22,11 @@
       "src/v1/routes/index.tsx?tsr-split=component"
     ],
     "css": [
-      "assets/app-BCfAd0tl.css"
+      "assets/app-Dm6D1sI4.css"
     ]
   },
   "src/v1/routes/add-book.tsx?tsr-split=component": {
-    "file": "assets/add-book-DX4jHJ-6.js",
+    "file": "assets/add-book-WwGezZcL.js",
     "name": "add-book",
     "src": "src/v1/routes/add-book.tsx?tsr-split=component",
     "isDynamicEntry": true,
@@ -40,7 +40,7 @@
     ]
   },
   "src/v1/routes/books.tsx?tsr-split=component": {
-    "file": "assets/books-DBupHzsm.js",
+    "file": "assets/books-CcemZ9nl.js",
     "name": "books",
     "src": "src/v1/routes/books.tsx?tsr-split=component",
     "isDynamicEntry": true,

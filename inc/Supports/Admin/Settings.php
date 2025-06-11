@@ -3,6 +3,8 @@
 namespace Bookself\Bookself\Supports\Admin;
 
 use Bojaghi\Contract\Support;
+use Bojaghi\Fields\Option\Option;
+use Bojaghi\FieldsRender\Render as R;
 use Bojaghi\FieldsRender\AdminCompound as AC;
 use Bojaghi\Template\Template;
 use Bookself\Bookself\Modules\Options;
@@ -32,10 +34,10 @@ class Settings implements Support
 
     private function prepareSettings(): void
     {
-        $option  = bookselfGet(Options::class);
-        $page    = BOOKSELF_SETTINGS_PAGE;
-        $section = 'bookself-settings-page';
+        $option = bookselfGet(Options::class);
+        $page   = BOOKSELF_SETTINGS_PAGE;
 
+        $section = 'bookself-settings-page';
         add_settings_section(
             $section,
             __('페이지', 'bookself'),
@@ -54,6 +56,26 @@ class Settings implements Support
                 'label_for' => "$section-front",
                 'name'      => $option->page->getKey(),
                 'value'     => $option->page->get(),
+            ],
+        );
+
+        $section = 'bookself-settings-api';
+        add_settings_section(
+            $section,
+            __('API', 'bookself'),
+            '__return_empty_string',
+            $page,
+        );
+
+        add_settings_field(
+            "$section-aladin_ttb_key",
+            $option->ttbKey->label,
+            [$this, 'outputAladinTtbKeyField'],
+            $page,
+            $section,
+            [
+                'label_for' => "$section-aladin_ttb_key",
+                'option'    => $option->ttbKey,
             ],
         );
     }
@@ -82,5 +104,29 @@ class Settings implements Support
         );
 
         echo wp_kses(AC::description($desc), getAllowedHtml());
+    }
+
+    /** Output aladin_ttk_key field */
+    public function outputAladinTtbKeyField(array $args): void
+    {
+        /** @var string $labelFor */
+        $labelFor = $args['label_for'] ?? '';
+
+        /** @var Option $option */
+        $option = $args['option'] ?? null;
+
+        $output = R::input(
+            [
+                'id'    => $labelFor,
+                'class' => 'text',
+                'name'  => $option->getKey(),
+                'type'  => 'text',
+                'value' => $option->get(),
+            ],
+        );
+
+        $output .= AC::description($option->description);
+
+        echo wp_kses($output, getAllowedHtml());
     }
 }

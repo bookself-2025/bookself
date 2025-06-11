@@ -1,5 +1,9 @@
-import {BookType} from '@/v1/libs/types'
+import {BookType, GetBookInfoType} from '@/v1/libs/types'
 import {baseUrl, nonce, request} from './init'
+
+async function _getBookInfo(isbn: string) {
+    return await request(`${baseUrl}/book-info/${isbn}`) as GetBookInfoType
+}
 
 async function _query() {
     const endpoint = `${baseUrl}/books`
@@ -35,6 +39,7 @@ async function _update(book: BookType) {
 }
 
 export {
+    _getBookInfo,
     _query,
     _update,
 }

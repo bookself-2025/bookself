@@ -1,6 +1,7 @@
 <?php
 
 use Bookself\Bookself\Modules;
+use Bookself\Bookself\Supports;
 use Bojaghi\Continy\Continy;
 
 if (!defined('ABSPATH')) {
@@ -34,16 +35,19 @@ return [
     ],
     'arguments' => [
         // Bojaghi side
-        'bojaghi/cleanPages'  => __DIR__ . '/clean-pages.php',
-        'bojaghi/customPosts' => __DIR__ . '/custom-posts.php',
-        'bojaghi/customTax'   => __DIR__ . '/custom-tax.php',
-        'bojaghi/scripts'     => __DIR__ . '/scripts.php',
-        'bojaghi/seeds'       => __DIR__ . '/seeds.php',
-        'bojaghi/template'    => __DIR__ . '/template.php',
-        'bojaghi/viteScripts' => __DIR__ . '/vite-scripts.php',
+        'bojaghi/cleanPages'       => __DIR__ . '/clean-pages.php',
+        'bojaghi/customPosts'      => __DIR__ . '/custom-posts.php',
+        'bojaghi/customTax'        => __DIR__ . '/custom-tax.php',
+        'bojaghi/scripts'          => __DIR__ . '/scripts.php',
+        'bojaghi/seeds'            => __DIR__ . '/seeds.php',
+        'bojaghi/template'         => __DIR__ . '/template.php',
+        'bojaghi/viteScripts'      => __DIR__ . '/vite-scripts.php',
         // Plugin side
-        'bookself/options'    => __DIR__ . '/options.php',
-        'bookself/postMeta'   => __DIR__ . '/post-meta.php',
+        'bookself/options'         => __DIR__ . '/options.php',
+        'bookself/postMeta'        => __DIR__ . '/post-meta.php',
+
+        // Supports
+        Supports\Api\Aladin::class => fn() => [bookselfGet(Modules\Options::class)->ttbKey->get()],
     ],
     'modules'   => [
         '_'             => [

@@ -1,10 +1,20 @@
+import ApiV1 from '@/v1/api'
 import useAddBookForm from '@/v1/components/hooks/use-add-book-form'
+import {useStore} from '@tanstack/react-form'
+import {Barcode, Search} from 'lucide-react'
 import {useState} from 'react'
 import {BarcodeScanner} from 'react-barcode-scanner'
 import 'react-barcode-scanner/polyfill'
 
 export default function AddBook() {
     const form = useAddBookForm()
+    const reactiveValues = useStore(form.store, (state) => ({
+        author: state.values.author,
+        pressName: state.values.pressName,
+        price: state.values.price,
+        releaseDate: state.values.releaseDate,
+        title: state.values.title,
+    }))
 
     const [showBarcodeScanner, setShowBarcodeScanner] = useState<boolean>(false)
 
@@ -26,30 +36,33 @@ export default function AddBook() {
         <div className="add-book px-2 py-4">
             <h1 className="text-lg font-semibold mb-2">새 책 등록</h1>
 
-            <div className="flex flex-col items-center mt-4 px-4 gap-y-2">
+            <div className="">
+                <button className="btn btn-accent" onClick={() => setShowBarcodeScanner(!showBarcodeScanner)}>
+                    <Barcode className="me-1" />
+                    {showBarcodeScanner ? '스캔 닫기' : '바코드 스캔'}
+                </button>
                 {showBarcodeScanner && (
                     <>
-                        <BarcodeScanner
-                            id="add-book-barcode-scanner"
-                            className="mt-2"
-                            onCapture={(barcodes) => {
-                                if (barcodes.length > 0 && barcodes[0].rawValue.length === 13) {
-                                    form.setFieldValue('isbn', formatIsbn(barcodes[0].rawValue))
-                                }
-                            }}
-                            options={{
-                                formats: ['ean_13'],
-                            }}
-                        />
-                        <button
-                            className="btn btn-secondary"
-                            onClick={() => {
-                                setShowBarcodeScanner(false)
-                            }}
-                            type="button"
-                        >
-                            닫기
-                        </button>
+                        <div className="mt-2 w-[480px] h-[300px]">
+                            <BarcodeScanner
+                                id="add-book-barcode-scanner"
+                                className="mt-2"
+                                onCapture={(barcodes) => {
+                                    if (barcodes.length > 0 && barcodes[0].rawValue.length > 0) {
+                                        form.setFieldValue('isbn', formatIsbn(barcodes[0].rawValue))
+                                        setShowBarcodeScanner(false)
+                                    }
+                                }}
+                                options={{
+                                    formats: ['ean_13'],
+                                }}
+                                trackConstraints={{
+                                    aspectRatio: {min: 1, max: 2},
+                                    height: {min: 300},
+                                    width: {min: 450},
+                                }}
+                            />
+                        </div>
                     </>
                 )}
             </div>
@@ -85,10 +98,20 @@ export default function AddBook() {
                                         />
                                         <button
                                             className="btn btn-secondary"
+                                            disabled={13 !== field.state.value.length}
                                             type="button"
-                                            onClick={() => setShowBarcodeScanner(true)}
+                                            onClick={() => {
+                                                ApiV1.Book.getBookInfo(field.state.value).then((data) => {
+                                                    form.setFieldValue('author', data.author)
+                                                    // 커버 이미지 필요
+                                                    form.setFieldValue('pressName', data.pressName)
+                                                    form.setFieldValue('price', data.price.toString())
+                                                    form.setFieldValue('releaseDate', data.releaseDate)
+                                                    form.setFieldValue('title', data.title)
+                                                })
+                                            }}
                                         >
-                                            스
+                                            <Search size={18} />
                                         </button>
                                     </div>
                                 </>
@@ -107,11 +130,12 @@ export default function AddBook() {
                                     className="input"
                                     label="제목"
                                     name={field.name}
+                                    onBlur={field.handleBlur}
                                     onChange={(e) => field.handleChange(e.target.value)}
                                     placeholder="책 제목은 필수 입력합니다"
                                     required={true}
                                     type="text"
-                                    value={field.state.value}
+                                    value={reactiveValues.title}
                                 />
                             )
                         }}
@@ -127,7 +151,10 @@ export default function AddBook() {
                                     className="input"
                                     label="저자"
                                     name={field.name}
+                                    onBlur={field.handleBlur}
+                                    onChange={(e) => field.handleChange(e.target.value)}
                                     type="text"
+                                    value={reactiveValues.author}
                                 />
                             )
                         }}
@@ -143,7 +170,10 @@ export default function AddBook() {
                                     className="input"
                                     label="출판사"
                                     name={field.name}
+                                    onBlur={field.handleBlur}
+                                    onChange={(e) => field.handleChange(e.target.value)}
                                     type="text"
+                                    value={reactiveValues.pressName}
                                 />
                             )
                         }}
@@ -159,7 +189,10 @@ export default function AddBook() {
                                     className="input"
                                     label="출간일"
                                     name={field.name}
+                                    onBlur={field.handleBlur}
+                                    onChange={(e) => field.handleChange(e.target.value)}
                                     type="date"
+                                    value={reactiveValues.releaseDate}
                                 />
                             )
                         }}
@@ -175,7 +208,10 @@ export default function AddBook() {
                                     className="input"
                                     label="정가"
                                     name={field.name}
+                                    onBlur={field.handleBlur}
+                                    onChange={(e) => field.handleChange(e.target.value)}
                                     type="text"
+                                    value={reactiveValues.price}
                                 />
                             )
                         }}

@@ -17,6 +17,17 @@ type BookType = {
     formattedPrice: string
 }
 
+// 알라딘 API 상품 조회 결과 타입
+type GetBookInfoType = {
+    author: string
+    cover: string
+    isbn: string
+    pressName: string
+    price: number
+    releaseDate: string
+    title: string
+}
+
 type ImageType = {
     url: string,
     width: number,
@@ -40,6 +51,7 @@ type StateType = {
 
 export type{
     BookType,
+    GetBookInfoType,
     ImageType,
     OwnType,
     ReadType,

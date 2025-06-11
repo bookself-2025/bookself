@@ -9,14 +9,16 @@ use function Bookself\Bookself\prefixed;
 
 /**
  * @property-read Option $page
+ * @property-read Option $ttbKey
  */
 class Options extends OptionsBase
 {
     public function __get(string $name)
     {
         $mapped = match ($name) {
-            'page'  => prefixed('page'),
-            default => '',
+            'page'   => prefixed('page'),
+            'ttbKey' => prefixed('aladin_ttb_key'),
+            default  => '',
         };
 
         if ($mapped) {

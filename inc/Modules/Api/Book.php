@@ -3,7 +3,9 @@
 namespace Bookself\Bookself\Modules\Api;
 
 use Bojaghi\Contract\Module;
+use Bookself\Bookself\Supports\Api\Aladin;
 use Bookself\Bookself\Supports\Api\Book as Support;
+use Exception;
 use WP_REST_Request;
 use WP_REST_Response;
 
@@ -39,6 +41,23 @@ class Book implements Module
                         'required'          => true,
                         'validate_callback' => fn($v) => is_numeric($v),
                         'sanitize_callback' => 'absint',
+                    ],
+                ],
+            ],
+        );
+
+        register_rest_route(
+            'bookself/v1',
+            '/book-info/(?P<isbn>\d{13})/',
+            [
+                'callback'            => [$this, 'bookInfo'],
+                'methods'             => ['GET'],
+                'permission_callback' => /*'is_user_logged_in'*/ '__return_true',
+                'args'                => [
+                    'isbn' => [
+                        'required'          => true,
+                        'validate_callback' => fn($v) => is_numeric($v),
+                        'sanitize_callback' => 'sanitize_text_field',
                     ],
                 ],
             ],
@@ -91,5 +110,25 @@ class Book implements Module
         }
 
         return new WP_REST_Response('Method not allowed', 405);
+    }
+
+    /**
+     * 알라딘 API 이용하여 책 정보 조회
+     *
+     * @param WP_REST_Request $request
+     *
+     * @return WP_REST_Response
+     *
+     * @uses Aladin::getProductInfo()
+     */
+    public function bookInfo(WP_REST_Request $request): WP_REST_Response
+    {
+        try {
+            $result = bookselfCall(Aladin::class, 'getProductInfo', [$request->get_param('isbn')]);
+        } catch (Exception $e) {
+            return new WP_REST_Response($e->getMessage(), $e->getCode());
+        }
+
+        return new WP_REST_Response($result, 200);
     }
 }

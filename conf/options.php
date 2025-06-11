@@ -18,4 +18,15 @@ return [
         'default'           => 0,
         'get_filter'        => null,
     ],
+    prefixed('aladin_ttb_key')  => [
+        'group'             => BOOKSELF_OPTION_GROUP,
+        'type'              => 'string',
+        'label'             => '알라딘 TTBKey',
+        'description'       => '알라딘 TTBKey. https://www.aladin.co.kr/ttb/wblog_manage.aspx 에서 발급받는다.',
+        'sanitize_callback' => 'sanitize_text_field',
+        'show_in_rest'      => false,
+        'autoload'          => false,
+        'default'           => '',
+        'get_filter'        => null,
+    ]
 ];
