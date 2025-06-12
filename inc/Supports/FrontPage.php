@@ -22,7 +22,7 @@ readonly class FrontPage implements Support
      */
     public function addExtraAttrsToHTML(string $output): string
     {
-        return $output . ' data-theme="nord"';
+        return $output . ' data-theme="garden"';
     }
 
     /**

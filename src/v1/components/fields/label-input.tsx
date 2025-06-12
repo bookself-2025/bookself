@@ -1,3 +1,4 @@
+import Labelled from '@/v1/components/fields/labelled'
 import {InputHTMLAttributes} from 'react'
 
 type Props = InputHTMLAttributes<HTMLInputElement> & {
@@ -13,15 +14,12 @@ export default function LabelInput(props: Props) {
     } = props
 
     return (
-        <>
-            <label className="label mt-2" htmlFor={id}>
-                {label}
-            </label>
+        <Labelled htmlFor={id} label={label}>
             <input
                 id={id}
                 {...rest}
             />
             {children}
-        </>
+        </Labelled>
     )
 }

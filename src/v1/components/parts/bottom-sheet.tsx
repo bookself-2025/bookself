@@ -1,5 +1,5 @@
 import ApiV1 from '@/v1/api'
-import SheetBookInfo from '@/v1/components/parts/sheet-book-info'
+import BookDetail from '@/v1/components/parts/book-detail'
 import VaulBottomSheet from '@/v1/layouts/vaul-bottom-sheet'
 import useBookselfContext from '@/v1/libs/context'
 import queryKeys from '@/v1/libs/query-keys'
@@ -26,7 +26,7 @@ export default function BottomSheet() {
                 }
             }}
         >
-            {book && (<SheetBookInfo
+            {book && (<BookDetail
                 book={book}
                 onChangeOwn={(own) => {
                     dispatch({

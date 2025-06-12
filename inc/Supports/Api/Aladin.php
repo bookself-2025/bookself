@@ -36,6 +36,7 @@ readonly class Aladin implements Support
     {
         $url = add_query_arg(
             [
+                'Cover'      => 'Big',
                 'TTBKey'     => $this->ttbKey,
                 'itemId'     => $isbn,
                 'itemIdType' => 'ISBN',

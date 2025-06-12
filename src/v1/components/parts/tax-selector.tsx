@@ -20,22 +20,25 @@ export default function TaxSelector(props: Props) {
         <div
             className={cn(
                 'tax-selector flex justify-center',
-                className
+                className,
             )}
             {...rest}
         >
-            {!!terms && Object.entries(terms).map(([key, label]) => (
-                <button
-                    className={cn(
-                        'btn btn-sm shrink',
-                        {'btn-neutral': value === key},
-                    )}
-                    onClick={() => onChange && onChange(key)}
-                    key={key}
-                >
-                    {label}
-                </button>
-            ))}
+            <div className="join">
+                {!!terms && Object.entries(terms).map(([key, label]) => (
+                    <button
+                        className={cn(
+                            'btn btn-sm shrink',
+                            {'btn-neutral': value === key},
+                        )}
+                        key={key}
+                        onClick={() => onChange && onChange(key)}
+                        type="button"
+                    >
+                        {label}
+                    </button>
+                ))}
+            </div>
         </div>
     )
 }

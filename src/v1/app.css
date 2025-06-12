@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-    themes: nord --default, business --dark;
+    themes: garden --default, business --dark;
 }
 @custom-variant dark (&:where([data-theme=business], [data-theme=business] *));
 

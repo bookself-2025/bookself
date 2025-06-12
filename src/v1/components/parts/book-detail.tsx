@@ -9,7 +9,7 @@ type Props = {
     onChangeRead: (read: ReadType) => void
 }
 
-export default function SheetBookInfo(props: Props) {
+export default function BookDetail(props: Props) {
     const {
         book,
         onChangeOwn,
