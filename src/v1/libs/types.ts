@@ -1,3 +1,17 @@
+// 새롭게 책을 등록할 경우
+type AddBookType = {
+    coverImage: string
+    isbn: string
+    title: string
+    author: string
+    pressName: string
+    releaseDate: string
+    price: string
+    own: string
+    read: string
+}
+
+// 프론트에서 보이는 가장 일반적인 책 타입
 type BookType = {
     id: number
     author: string
@@ -50,6 +64,7 @@ type StateType = {
 }
 
 export type{
+    AddBookType,
     BookType,
     GetBookInfoType,
     ImageType,

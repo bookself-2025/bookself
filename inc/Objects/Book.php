@@ -5,7 +5,6 @@ namespace Bookself\Bookself\Objects;
 use Bookself\Bookself\Modules\PostMeta;
 use NumberFormatter;
 use WP_Post;
-use WP_Query;
 use function Bookself\Bookself\getTheFirstTerm;
 
 class Book
@@ -31,6 +30,14 @@ class Book
 
     public function delete(bool $force = false): void
     {
+        if (!$this->id) {
+            return;
+        }
+
+        if ($this->thumbnailId) {
+            wp_delete_attachment($this->thumbnailId, $force);
+        }
+
         wp_delete_post($this->id, $force);
     }
 
@@ -125,6 +132,8 @@ class Book
     public function update(): void
     {
         $meta = bookselfGet(PostMeta::class);
+
+        // TODO: sanitize/validate each form here.
 
         $data = [
             'ID'          => $this->id,

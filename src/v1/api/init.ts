@@ -17,6 +17,11 @@ async function request(endpoint: string, init?: RequestInit) {
         },
     })
 
+    if (!r.ok) {
+        console.error(r)
+        throw new Error(`${r.status}: ${await r.json()}`)
+    }
+
     return await r.json()
 }
 

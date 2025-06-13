@@ -1,10 +1,22 @@
-export default function FormSubmit() {
+import {cn} from '@/v1/libs/utils'
+import {ButtonHTMLAttributes, forwardRef} from 'react'
+
+type Props = ButtonHTMLAttributes<HTMLButtonElement>
+
+const FormSubmit = forwardRef<HTMLButtonElement, ButtonHTMLAttributes<HTMLButtonElement>>((props: Props, ref) => {
+    const {className, children, type, ...rest} = props
+
     return (
         <button
-            className="btn btn-primary mt-8"
-            type="submit"
+            className={cn('btn btn-primary mt-8', className)}
+            ref={ref}
+            type={type ?? 'submit'}
+            {...rest}
         >
-            저장하기
+            {children}
         </button>
     )
-}
+})
+FormSubmit.displayName = 'FormSubmit'
+
+export default FormSubmit

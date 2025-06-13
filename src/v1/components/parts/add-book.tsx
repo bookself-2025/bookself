@@ -12,11 +12,13 @@ export default function AddBook() {
 
     const [
         coverImage,
+        isbn,
         own,
         read,
         title,
     ] = useStore(form.store, (state) => [
         state.values.coverImage,
+        state.values.isbn,
         state.values.own,
         state.values.read,
         state.values.title,
@@ -119,7 +121,7 @@ export default function AddBook() {
                                                 onChange={(e) => field.handleChange(e.target.value.replace(/[^0-9]/g, ''))}
                                                 placeholder=""
                                                 type="text"
-                                                value={formatIsbn(field.state.value)}
+                                                value={formatIsbn(isbn)}
                                             />
                                             <button
                                                 className="btn btn-secondary"
@@ -286,7 +288,14 @@ export default function AddBook() {
                             }}
                         />
                         <form.AppForm>
-                            <form.FormSubmit />
+                            <form.Subscribe
+                                selector={(state) => [state.canSubmit, state.isSubmitting]}
+                                children={([canSubmit, isSubmitting]) => (
+                                    <form.FormSubmit disabled={!canSubmit || isSubmitting}>
+                                        {canSubmit ? '저장하기' : (isSubmitting ? '저장하는 중...' : '저장할 수 없습니다')}
+                                    </form.FormSubmit>
+                                )}
+                            />
                         </form.AppForm>
                     </fieldset>
                 </form>

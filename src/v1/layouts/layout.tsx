@@ -12,11 +12,13 @@ export default function Layout(props: Props) {
         ...rest
     } = props
 
+    // See app.css for admin_bar adjustment.
     return (
         <div
             className={cn(
                 'bookself-top-level-container',
                 'flex flex-col',
+                'w-full min-h-dvh',
                 className,
             )}
             {...rest}

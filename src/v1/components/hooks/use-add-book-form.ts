@@ -1,3 +1,4 @@
+import ApiV1 from '@/v1/api'
 import FormSubmit from '@/v1/components/fields/form-submit'
 import ImagePreview from '@/v1/components/fields/image-preview'
 import LabelInput from '@/v1/components/fields/label-input'
@@ -23,7 +24,7 @@ export default function useAddBookForm() {
     return useAppForm({
         defaultValues: {
             coverImage: '',
-            isbn: '9788962813609',
+            isbn: '',
             title: '',
             author: '',
             pressName: '',
@@ -32,8 +33,13 @@ export default function useAddBookForm() {
             own: 'own',
             read: 'not-read',
         },
-        onSubmit: ({value}) => {
-            alert(JSON.stringify(value, null, 2))
+        onSubmit: ({value, formApi}) => {
+            ApiV1.Book.add(value).then(() => {
+                alert('책이 등록되었습니다.')
+                formApi.reset()
+            }).catch((err: Error) => {
+                alert(err.message)
+            })
         },
     })
 }

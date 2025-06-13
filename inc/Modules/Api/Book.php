@@ -22,8 +22,8 @@ class Book implements Module
             'bookself/v1',
             '/books',
             [
-                'callback'            => [$this, 'query'],
-                'methods'             => 'GET',
+                'callback'            => [$this, 'addOrQuery'],
+                'methods'             => ['GET', 'POST'],
                 'permission_callback' => 'is_user_logged_in',
                 'args'                => [],
             ],
@@ -64,21 +64,36 @@ class Book implements Module
         );
     }
 
-    public function query(WP_REST_Request $request): WP_REST_Response
+    public function addOrQuery(WP_REST_Request $request): WP_REST_Response
     {
-        $result = bookselfCall(Support::class, 'query', [[
-            ...$request->get_params(),
-            'user_id' => get_current_user_id(),
-        ]]);
+        if ('GET' === $request->get_method()) {
+            $result = bookselfCall(Support::class, 'query', [[
+                ...$request->get_params(),
+                'user_id' => get_current_user_id(),
+            ]]);
 
-        return new WP_REST_Response(
-            $result['items'],
-            200,
-            [
-                'X-WP-Total'      => $result['total'],
-                'X-WP-TotalPages' => $result['totalpages'],
-            ],
-        );
+            return new WP_REST_Response(
+                $result['items'],
+                200,
+                [
+                    'X-WP-Total'      => $result['total'],
+                    'X-WP-TotalPages' => $result['totalpages'],
+                ],
+            );
+        }
+
+        if ('POST' === $request->get_method()) {
+            $result = bookselfCall(Support::class, 'add', [[
+                ...$request->get_params(),
+                'user_id' => get_current_user_id(),
+            ]]);
+            if (is_wp_error($result)) {
+                return new WP_REST_Response($result->get_error_message(), $result->get_error_code());
+            }
+            return new WP_REST_Response($result, 200);
+        }
+
+        return new WP_REST_Response('Method not allowed', 405);
     }
 
     public function book(WP_REST_Request $request): WP_REST_Response
