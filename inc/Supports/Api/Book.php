@@ -127,21 +127,10 @@ class Book implements Support
                     ],
                 );
 
-                $editor = wp_get_image_editor($path);
-
-                if (is_wp_error($editor)) {
-                    return;
+                if (!function_exists('wp_generate_attachment_metadata')) {
+                    require_once ABSPATH . 'wp-admin/includes/image.php';
                 }
-
-                $size     = $editor->get_size();
-                $metadata = [
-                    'path'      => _wp_relative_upload_path($path),
-                    'file'      => wp_basename($path),
-                    'width'     => $size['width'],
-                    'height'    => $size['height'],
-                    'mime-type' => $contentType,
-                    'filesize'  => wp_filesize($path),
-                ];
+                $metadata = wp_generate_attachment_metadata($attachId, $path);
 
                 update_post_meta($attachId, '_wp_attachment_metadata', $metadata);
                 update_post_meta($book->id, '_thumbnail_id', $attachId);

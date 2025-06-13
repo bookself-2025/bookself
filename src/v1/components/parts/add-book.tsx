@@ -42,7 +42,7 @@ export default function AddBook() {
 
     return (
         <div className="add-book w-full inline-flex justify-center py-8 px-4">
-            <div>
+            <div className="max-w-[320px]">
                 <h1 className="text-lg font-semibold mb-2">새 책 등록</h1>
 
                 <div className="">
@@ -52,13 +52,13 @@ export default function AddBook() {
                     </button>
                     {showBarcodeScanner && (
                         <>
-                            <div className="mt-2 w-[480px] h-[300px]">
+                            <div className="mt-2 w-[320px] h-[200px]">
                                 <BarcodeScanner
                                     id="add-book-barcode-scanner"
                                     className="mt-2"
                                     onCapture={(barcodes) => {
                                         if (barcodes.length > 0 && barcodes[0].rawValue.length > 0) {
-                                            form.setFieldValue('isbn', formatIsbn(barcodes[0].rawValue))
+                                            form.setFieldValue('isbn', barcodes[0].rawValue)
                                             setShowBarcodeScanner(false)
                                         }
                                     }}
@@ -125,7 +125,7 @@ export default function AddBook() {
                                             />
                                             <button
                                                 className="btn btn-secondary"
-                                                disabled={13 !== field.state.value.length}
+                                                disabled={13 !== isbn.length}
                                                 type="button"
                                                 onClick={() => {
                                                     ApiV1.Book.getBookInfo(field.state.value).then((data) => {

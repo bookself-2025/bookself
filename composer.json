@@ -72,7 +72,8 @@
         "bojaghi/fields-render": "^1.0",
         "bojaghi/vite-scripts": "^1.2",
         "bojaghi/clean-pages": "^1.0",
-        "ext-intl": "*"
+        "ext-intl": "*",
+        "ext-mbstring": "*"
     },
-    "version": "0.11.0"
+    "version": "0.11.1"
 }

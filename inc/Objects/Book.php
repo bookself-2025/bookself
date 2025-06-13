@@ -5,6 +5,7 @@ namespace Bookself\Bookself\Objects;
 use Bookself\Bookself\Modules\PostMeta;
 use NumberFormatter;
 use WP_Post;
+use WP_Query;
 use function Bookself\Bookself\getTheFirstTerm;
 
 class Book
@@ -77,21 +78,24 @@ class Book
             $thumbId  = get_post_thumbnail_id($post);
             $metadata = wp_get_attachment_metadata($thumbId, true);
             $baseurl  = wp_get_upload_dir()['baseurl'];
+            $fullUrl  = path_join($baseurl, $metadata['file']);
 
             $output = [
                 'full' => [
-                    'url'    => path_join($baseurl, $metadata['file']),
+                    'url'    => $fullUrl,
                     'width'  => $metadata['width'],
                     'height' => $metadata['height'],
                 ],
             ];
 
-            foreach ($metadata['sizes'] as $size => $data) {
-                $output[$size] = [
-                    'url'    => path_join($baseurl, $data['file']),
-                    'width'  => $data['width'],
-                    'height' => $data['height'],
-                ];
+            if (isset($metadata['sizes'])) {
+                foreach ($metadata['sizes'] as $size => $data) {
+                    $output[$size] = [
+                        'url'    => path_join(dirname($fullUrl), $data['file']),
+                        'width'  => $data['width'],
+                        'height' => $data['height'],
+                    ];
+                }
             }
         }
 
