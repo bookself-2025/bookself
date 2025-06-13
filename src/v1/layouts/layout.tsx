@@ -28,6 +28,8 @@ export default function Layout(props: Props) {
                 {children}
             </main>
             <Footer />
+            {/* Spaing for dock */}
+            <div className="h-[64px]" />
         </div>
     )
 }

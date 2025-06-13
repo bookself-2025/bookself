@@ -61,6 +61,11 @@ type ReadType =
 
 type StateType = {
     book?: BookType
+    siteMeta: {
+        baseUrl: string
+        title: string
+        version: string
+    }
 }
 
 export type{

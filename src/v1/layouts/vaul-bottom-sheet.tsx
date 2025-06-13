@@ -22,8 +22,8 @@ export default function VaulBottomSheet(props: Props) {
                     className={cn(
                         'bg-gray-100 flex flex-col mt-24',
                         'fixed bottom-[64px] left-1/2 transform -translate-x-1/2', // fixed position setup
-                        'max-h-[90%] h-fit', // height setup
-                        'w-10/12 sm:w-2/3 lg:w-1/2', // width setup
+                        'max-h-[80%]', // height setup
+                        'w-10/12 sm:w-2/3 md:w-1/2 lg:1/3', // width setup
                         'rounded-t-[10px] outline-none', // outline and roundness
                     )}
                 >

@@ -9,6 +9,12 @@ function cn(...inputs: ClassValue[]) {
 function getDefaultState(override: Partial<StateType> = {}) {
     return {
         book: undefined,
+        siteMeta: {
+            baseUrl: '',
+            title: '',
+            version: '',
+            ...override.siteMeta,
+        },
         ...override,
     }
 }

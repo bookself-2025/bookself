@@ -1,6 +1,6 @@
 {
-  "_tslib.es6-q-tuXSiA.js": {
-    "file": "assets/tslib.es6-q-tuXSiA.js",
+  "_tslib.es6-BhHiCxWb.js": {
+    "file": "assets/tslib.es6-BhHiCxWb.js",
     "name": "tslib.es6",
     "imports": [
       "src/v1/app.tsx"
@@ -15,7 +15,7 @@
     "src": "node_modules/.pnpm/@undecaf+zbar-wasm@0.11.0/node_modules/@undecaf/zbar-wasm/dist/zbar.wasm"
   },
   "src/v1/app.tsx": {
-    "file": "assets/app-CVezRV8R.js",
+    "file": "assets/app-Cc1HUrJH.js",
     "name": "app",
     "src": "src/v1/app.tsx",
     "isEntry": true,
@@ -25,17 +25,17 @@
       "src/v1/routes/index.tsx?tsr-split=component"
     ],
     "css": [
-      "assets/app-rnwOpWQu.css"
+      "assets/app-BLmBle9D.css"
     ]
   },
   "src/v1/routes/add-book.tsx?tsr-split=component": {
-    "file": "assets/add-book-pSmkjiPj.js",
+    "file": "assets/add-book-Blgs0TzN.js",
     "name": "add-book",
     "src": "src/v1/routes/add-book.tsx?tsr-split=component",
     "isDynamicEntry": true,
     "imports": [
       "src/v1/app.tsx",
-      "_tslib.es6-q-tuXSiA.js"
+      "_tslib.es6-BhHiCxWb.js"
     ],
     "assets": [
       "assets/index-BY-99T_0.mjs",
@@ -43,13 +43,13 @@
     ]
   },
   "src/v1/routes/books.tsx?tsr-split=component": {
-    "file": "assets/books-iTy94kVM.js",
+    "file": "assets/books-C7X57xHs.js",
     "name": "books",
     "src": "src/v1/routes/books.tsx?tsr-split=component",
     "isDynamicEntry": true,
     "imports": [
       "src/v1/app.tsx",
-      "_tslib.es6-q-tuXSiA.js"
+      "_tslib.es6-BhHiCxWb.js"
     ]
   },
   "src/v1/routes/index.tsx?tsr-split=component": {

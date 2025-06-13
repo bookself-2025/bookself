@@ -23,7 +23,7 @@ declare global {
             baseUrl: string
             nonce: string
         },
-    }
+    } & Props
 }
 
 // React route
@@ -61,6 +61,6 @@ const App = (props: Props) => {
 
 createRoot(document.getElementById('bookself-root')!).render(
     <StrictMode>
-        <App />
+        <App initialState={bookselfVars.initialState} />
     </StrictMode>,
 )
