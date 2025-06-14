@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 @plugin "daisyui" {
     /*noinspection CssUnknownProperty*/
     themes: garden --default, business --dark;
@@ -8,14 +9,9 @@
 .bookself-top-level-container {
     --admin-bar-height: 32px;
     --admin-bar-mobile-height: 46px;
-}
+    --dock-size: 64px;
 
-.wp-admin-bar.logged-in .bookself-top-level-container {
-    min-height: calc(100vh - var(--admin-bar-height));
-}
-
-@media (max-width: 782px) {
-    .wp-admin-bar.logged-in .bookself-top-level-container {
-        min-height: calc(100vh - var(--admin-bar-mobile-height));
-    }
+    width: 100%;
+    min-height: 100svh;
+    padding-bottom: calc(var(--dock-size) + env(safe-area-inset-bottom));
 }

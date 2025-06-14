@@ -4,7 +4,7 @@ import {Book, CirclePlus} from 'lucide-react'
 
 export default function Dock() {
     return (
-        <div className="dock">
+        <div id="dock" className="dock">
             <Link
                 className={cn({
                     'dock-active': useMatch({
