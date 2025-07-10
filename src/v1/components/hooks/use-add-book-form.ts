@@ -3,6 +3,7 @@ import FormSubmit from '@/v1/components/fields/form-submit'
 import ImagePreview from '@/v1/components/fields/image-preview'
 import LabelInput from '@/v1/components/fields/label-input'
 import Labelled from '@/v1/components/fields/labelled'
+import useBookselfContext from '@/v1/libs/context'
 import {createFormHook, createFormHookContexts} from '@tanstack/react-form'
 
 const {fieldContext, formContext} = createFormHookContexts()
@@ -21,6 +22,12 @@ const {useAppForm} = createFormHook({
 })
 
 export default function useAddBookForm() {
+    const {
+        state: {
+            ownTerms,
+        }
+    } = useBookselfContext()
+
     return useAppForm({
         defaultValues: {
             coverImage: '',
@@ -30,7 +37,7 @@ export default function useAddBookForm() {
             pressName: '',
             releaseDate: '',
             price: '',
-            own: 'own',
+            own: ownTerms['own-by-me'],
             read: 'not-read',
         },
         onSubmit: ({value, formApi}) => {

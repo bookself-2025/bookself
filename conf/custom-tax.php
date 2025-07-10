@@ -4,6 +4,10 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+if (!defined('BOOKSELF_EXPOSE_TAX') ) {
+    define('BOOKSELF_EXPOSE_TAX', false);
+}
+
 return [
     // bookself_own
     [
@@ -49,9 +53,9 @@ return [
             'description'           => '개인별 등록된 도서의 소유 상태를 지정',
             'public'                => false,
             'publicly_queryable'    => false,
-            'hierarchical'          => false,
-            'show_ui'               => false,
-            'show_in_menu'          => false,
+            'hierarchical'          => true,
+            'show_ui'               => BOOKSELF_EXPOSE_TAX,
+            'show_in_menu'          => BOOKSELF_EXPOSE_TAX,
             'show_in_nav_menus'     => false,
             'show_in_rest'          => false,
             'rest_base'             => 'bookself_own',
@@ -131,8 +135,8 @@ return [
             'public'                => false,
             'publicly_queryable'    => false,
             'hierarchical'          => false,
-            'show_ui'               => false,
-            'show_in_menu'          => false,
+            'show_ui'               => BOOKSELF_EXPOSE_TAX,
+            'show_in_menu'          => BOOKSELF_EXPOSE_TAX,
             'show_in_nav_menus'     => false,
             'show_in_rest'          => false,
             'rest_base'             => 'bookself_read',

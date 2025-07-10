@@ -27,7 +27,7 @@ class MetaBoxes implements Module
         );
 
         // 기존의 태그 메타 박스 삭제 처리
-        remove_meta_box('tagsdiv-bookself_own', null, 'side');
+        remove_meta_box('bookself_owndiv', null, 'side');
         remove_meta_box('tagsdiv-bookself_read', null, 'side');
 
         add_meta_box(

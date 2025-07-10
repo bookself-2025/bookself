@@ -6,7 +6,8 @@ use Bojaghi\Contract\Support;
 use Bojaghi\Template\Template;
 use Bookself\Bookself\Modules\PostMeta;
 use WP_Post;
-use function Bookself\Bookself\getAllTerms;
+use function Bookself\Bookself\getAllOwnTerms;
+use function Bookself\Bookself\getAllReadTerms;
 use function Bookself\Bookself\getTheFirstTerm;
 use function Bookself\Bookself\Kses\getAllowedHtml;
 
@@ -59,12 +60,12 @@ readonly class BookSupport implements Support
                     'read' => BOOKSELF_TAX_READ,
                 ],
                 'value'   => [
-                    'own'  => getTheFirstTerm($post->ID, BOOKSELF_TAX_OWN)->slug ?? '',
+                    'own'  => getTheFirstTerm($post->ID, BOOKSELF_TAX_OWN)->term_id ?? '',
                     'read' => getTheFirstTerm($post->ID, BOOKSELF_TAX_READ)->slug ?? '',
                 ],
                 'options' => [
-                    'own'  => getAllTerms(BOOKSELF_TAX_OWN),
-                    'read' => getAllTerms(BOOKSELF_TAX_READ),
+                    'own'  => getAllOwnTerms(),
+                    'read' => getAllReadTerms(),
                 ],
             ]),
             getAllowedHtml(),

@@ -28,17 +28,17 @@ export default function BottomSheet() {
         >
             {book && (<BookDetail
                 book={book}
-                onChangeOwn={(own) => {
+                onChangeOwn={(termId) => {
                     dispatch({
                         type: ActionType.SET_BOOK,
                         payload: {
                             ...book,
-                            own,
+                            own: termId,
                         },
                     })
                     ApiV1.Book.update({
                         ...book,
-                        own: own,
+                        own: termId,
                     }).then(() => {
                         queryClient.invalidateQueries({queryKey: queryKeys.books()}).then()
                     })

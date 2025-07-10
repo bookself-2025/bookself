@@ -34,14 +34,57 @@ namespace Bookself\Bookself {
         return is_array($terms) && $terms && $terms[0] instanceof WP_Term ? $terms[0] : null;
     }
 
-    function getAllTerms(string $taxonomy): array
+    /**
+     * 모든 읽은 상태 텀 리턴
+     *
+     * 플랫한 택소노미라서 슬러그/이름 쌍 형태의 배열을 리턴한다.
+     *
+     * @return array<string, string>
+     */
+    function getAllReadTerms(): array
     {
-        $all   = [];
-        $terms = get_terms(['taxonomy' => $taxonomy, 'hide_empty' => false]);;
+        return getAllTerms(BOOKSELF_TAX_READ);
+    }
 
-        if (is_array($terms)) {
-            foreach ($terms as $t) {
-                $all[$t->slug] = $t->name;
+    /**
+     * 모든 도서 소유 상태 텀 리턴
+     *
+     * 위계적 택소노미라서 약간의 트릭을 쓴다. 배열은 텀ID/이름 쌍 형태이다.
+     *
+     * @return array<int, string>
+     */
+    function getAllOwnTerms(string $field = 'name'): array
+    {
+        $output = getAllTerms(BOOKSELF_TAX_OWN, 'own', $field);
+
+        $notOwn = get_term_by('slug', 'not-own', BOOKSELF_TAX_OWN);
+        if ($notOwn) {
+            $output[$notOwn->term_id] = $notOwn->$field;
+        }
+
+        return $output;
+    }
+
+    function getAllTerms(string $taxonomy, string $parentOf = '', string $field = 'name'): array
+    {
+        $all = [];
+
+        if (is_taxonomy_hierarchical($taxonomy)) {
+            $t = get_term_by('slug', $parentOf, $taxonomy);
+            if ($t) {
+                $terms = get_terms(['taxonomy' => $taxonomy, 'hide_empty' => false, 'parent' => $t->term_id]);
+                if (is_array($terms)) {
+                    foreach ($terms as $t) {
+                        $all[$t->term_id] = $t->$field;
+                    }
+                }
+            }
+        } else {
+            $terms = get_terms(['taxonomy' => $taxonomy, 'hide_empty' => false]);;
+            if (is_array($terms)) {
+                foreach ($terms as $t) {
+                    $all[$t->slug] = $t->$field;
+                }
             }
         }
 

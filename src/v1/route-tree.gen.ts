@@ -8,82 +8,43 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as BooksRouteImport } from './routes/books'
+import { Route as AddBookRouteImport } from './routes/add-book'
+import { Route as IndexRouteImport } from './routes/index'
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as BooksImport } from './routes/books'
-import { Route as AddBookImport } from './routes/add-book'
-import { Route as IndexImport } from './routes/index'
-
-// Create/Update Routes
-
-const BooksRoute = BooksImport.update({
+const BooksRoute = BooksRouteImport.update({
   id: '/books',
   path: '/books',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AddBookRoute = AddBookImport.update({
+const AddBookRoute = AddBookRouteImport.update({
   id: '/add-book',
   path: '/add-book',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const IndexRoute = IndexImport.update({
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-// Populate the FileRoutesByPath interface
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/add-book': {
-      id: '/add-book'
-      path: '/add-book'
-      fullPath: '/add-book'
-      preLoaderRoute: typeof AddBookImport
-      parentRoute: typeof rootRoute
-    }
-    '/books': {
-      id: '/books'
-      path: '/books'
-      fullPath: '/books'
-      preLoaderRoute: typeof BooksImport
-      parentRoute: typeof rootRoute
-    }
-  }
-}
-
-// Create and export the route tree
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/add-book': typeof AddBookRoute
   '/books': typeof BooksRoute
 }
-
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/add-book': typeof AddBookRoute
   '/books': typeof BooksRoute
 }
-
 export interface FileRoutesById {
-  __root__: typeof rootRoute
+  __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/add-book': typeof AddBookRoute
   '/books': typeof BooksRoute
 }
-
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths: '/' | '/add-book' | '/books'
@@ -92,11 +53,36 @@ export interface FileRouteTypes {
   id: '__root__' | '/' | '/add-book' | '/books'
   fileRoutesById: FileRoutesById
 }
-
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AddBookRoute: typeof AddBookRoute
   BooksRoute: typeof BooksRoute
+}
+
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/books': {
+      id: '/books'
+      path: '/books'
+      fullPath: '/books'
+      preLoaderRoute: typeof BooksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/add-book': {
+      id: '/add-book'
+      path: '/add-book'
+      fullPath: '/add-book'
+      preLoaderRoute: typeof AddBookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+  }
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -104,31 +90,6 @@ const rootRouteChildren: RootRouteChildren = {
   AddBookRoute: AddBookRoute,
   BooksRoute: BooksRoute,
 }
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/add-book",
-        "/books"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/add-book": {
-      "filePath": "add-book.tsx"
-    },
-    "/books": {
-      "filePath": "books.tsx"
-    }
-  }
-}
-ROUTE_MANIFEST_END */

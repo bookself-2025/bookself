@@ -4,7 +4,7 @@ namespace Bookself\Bookself\Supports\Api;
 
 use Bojaghi\Contract\Support;
 use Bookself\Bookself\Modules\PostMeta;
-use Bookself\Bookself\Objects\Book as ObjectBook;
+use Bookself\Bookself\Objects\BookObject;
 use WP_Error;
 use WP_Query;
 
@@ -15,9 +15,9 @@ class Book implements Support
      *
      * @param string|array $args
      *
-     * @return ObjectBook|WP_Error
+     * @return BookObject|WP_Error
      */
-    public function add(string|array $args = ''): ObjectBook|WP_Error
+    public function add(string|array $args = ''): BookObject|WP_Error
     {
         $meta = bookselfGet(PostMeta::class);
 
@@ -70,10 +70,10 @@ class Book implements Support
         }
 
         if ($hasBook->have_posts()) {
-            return new WP_Error(400, '책이 이미 등록되어 있습니다.');
+            return new WP_Error(400, 'book-already-registered');
         }
 
-        $book = new ObjectBook();
+        $book = new BookObject();
 
         $book->id          = 0;
         $book->userId      = $args['user_id'];
@@ -87,13 +87,13 @@ class Book implements Support
         $book->releaseDate = $args['releaseDate'];
         $book->title       = $args['title'];
 
-        $book->update();
+        $book->save();
         $this->addCoverImage($book, $args['coverImage']);
 
         return $book;
     }
 
-    private function addCoverImage(ObjectBook $book, string $url): void
+    private function addCoverImage(BookObject $book, string $url): void
     {
         $url = esc_url_raw($url);
 
@@ -149,22 +149,21 @@ class Book implements Support
             'user_id' => 0,
         ]);
 
-        $result = ObjectBook::query([
+        $result = BookObject::query([
             'author'      => $args['user_id'],
             'order'       => 'desc',
             'orderby'     => 'date',
             'post_status' => 'publish',
-            'post_type'   => BOOKSELF_CPT_BOOK,
         ]);
 
         return [
             'items'      => $result->items,
             'total'      => $result->total,
-            'totalpages' => $result->numPages,
+            'totalpages' => $result->lastPage,
         ];
     }
 
-    public function get(string|array $args = ''): ObjectBook|WP_Error
+    public function get(string|array $args = ''): BookObject|WP_Error
     {
         $args = wp_parse_args($args, [
             'book_id' => 0,
@@ -174,6 +173,7 @@ class Book implements Support
         $query = new WP_Query([
             'p'                => $args['book_id'],
             'author'           => $args['user_id'],
+            'fields'           => 'ids',
             'post_status'      => 'publish',
             'post_type'        => BOOKSELF_CPT_BOOK,
             'posts_per_page'   => 1,
@@ -182,13 +182,14 @@ class Book implements Support
         ]);
 
         if ($query->have_posts()) {
-            return ObjectBook::get($query->posts[0]);
+            return BookObject::get($query->posts[0]);
+            // return ObjectBook::get($query->posts[0]);
         }
 
         return new WP_Error('error', 'Book not found');
     }
 
-    public function update(string|array $args = ''): ObjectBook|WP_Error
+    public function update(string|array $args = ''): BookObject|WP_Error
     {
         $args = wp_parse_args($args, [
             'book_id' => 0,
@@ -204,7 +205,7 @@ class Book implements Support
         }
 
         $props = array_diff(
-            array_keys(get_class_vars(ObjectBook::class)),
+            array_keys(get_class_vars(BookObject::class)),
             ['id', 'coverImage', 'formattedPrice'],
         );
 
@@ -214,7 +215,7 @@ class Book implements Support
             }
         }
 
-        $book->update();
+        $book->save();
 
         return $book;
     }

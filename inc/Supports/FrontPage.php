@@ -6,6 +6,7 @@ use Bojaghi\Contract\Support;
 use Bojaghi\ViteScripts\MountNode;
 use Bojaghi\ViteScripts\ViteScript;
 use Bookself\Bookself\Modules\Options;
+use function Bookself\Bookself\getAllOwnTerms;
 
 readonly class FrontPage implements Support
 {
@@ -86,6 +87,7 @@ readonly class FrontPage implements Support
                     'nonce'   => wp_create_nonce('wp_rest'),
                 ],
                 'initialState' => [
+                    'ownTerms' => array_flip(getAllOwnTerms('slug')),
                     'siteMeta' => [
                         'baseUrl' => get_the_permalink(),
                         'title'   => get_the_title(),

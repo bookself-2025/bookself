@@ -4,20 +4,67 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef20390bc0a793b44856a27c2b3b8bc7",
+    "content-hash": "7f04114a6b85fdcd56e2f46ee52021b9",
     "packages": [
         {
-            "name": "bojaghi/clean-pages",
-            "version": "1.0.6",
+            "name": "bojaghi/base-object",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/bojaghi/clean-pages.git",
-                "reference": "f6708503ea6115b9e85195cad8f3b4c20c4b5282"
+                "url": "https://github.com/bojaghi/base-object.git",
+                "reference": "c661b8e45163a1eaaccd2b42574daf7a8395b03a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bojaghi/clean-pages/zipball/f6708503ea6115b9e85195cad8f3b4c20c4b5282",
-                "reference": "f6708503ea6115b9e85195cad8f3b4c20c4b5282",
+                "url": "https://api.github.com/repos/bojaghi/base-object/zipball/c661b8e45163a1eaaccd2b42574daf7a8395b03a",
+                "reference": "c661b8e45163a1eaaccd2b42574daf7a8395b03a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "bojaghi/wp-tests": "^1.1",
+                "phpunit/phpunit": "^9",
+                "yoast/phpunit-polyfills": "^4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bojaghi\\BaseObject\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "changwoo",
+                    "email": "ep6tri@hotmail.com",
+                    "homepage": "https://blog.changwoo.pe.kr"
+                }
+            ],
+            "description": "Post-meta mapping object base",
+            "homepage": "https://github.com/bojaghi/base-object",
+            "support": {
+                "issues": "https://github.com/bojaghi/base-object/issues",
+                "source": "https://github.com/bojaghi/base-object/tree/1.0.0"
+            },
+            "time": "2025-06-17T18:53:59+00:00"
+        },
+        {
+            "name": "bojaghi/clean-pages",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bojaghi/clean-pages.git",
+                "reference": "b94c1eb7dcd84901f52cf71189a283aacdf55f69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bojaghi/clean-pages/zipball/b94c1eb7dcd84901f52cf71189a283aacdf55f69",
+                "reference": "b94c1eb7dcd84901f52cf71189a283aacdf55f69",
                 "shasum": ""
             },
             "require": {
@@ -40,13 +87,18 @@
             "license": [
                 "GPL-2.0-or-later"
             ],
+            "authors": [
+                {
+                    "name": "changwoo"
+                }
+            ],
             "description": "워드프레스 플러그인에서 테마와 완전히 무관한 빈 페이지를 운영하게 도와줌니다.",
             "homepage": "https://github.com/bojaghi/clean-pages",
             "support": {
                 "issues": "https://github.com/bojaghi/clean-pages/issues",
-                "source": "https://github.com/bojaghi/clean-pages/tree/1.0.6"
+                "source": "https://github.com/bojaghi/clean-pages/tree/1.1.0"
             },
-            "time": "2025-06-09T14:58:27+00:00"
+            "time": "2025-06-15T17:46:09+00:00"
         },
         {
             "name": "bojaghi/continy",
@@ -266,16 +318,16 @@
         },
         {
             "name": "bojaghi/fields-render",
-            "version": "1.0.5",
+            "version": "1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bojaghi/fields-render.git",
-                "reference": "6d5b36dc002bd4af6c655d3b0e2e03d25caff0ef"
+                "reference": "fea34acfe574f13fc1dd10aab67e0bbd2c7cdda8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bojaghi/fields-render/zipball/6d5b36dc002bd4af6c655d3b0e2e03d25caff0ef",
-                "reference": "6d5b36dc002bd4af6c655d3b0e2e03d25caff0ef",
+                "url": "https://api.github.com/repos/bojaghi/fields-render/zipball/fea34acfe574f13fc1dd10aab67e0bbd2c7cdda8",
+                "reference": "fea34acfe574f13fc1dd10aab67e0bbd2c7cdda8",
                 "shasum": ""
             },
             "require": {
@@ -306,9 +358,9 @@
             "homepage": "https://github.com/bojaghi/fields-render",
             "support": {
                 "issues": "https://github.com/bojaghi/fields-render/issues",
-                "source": "https://github.com/bojaghi/fields-render/tree/1.0.5"
+                "source": "https://github.com/bojaghi/fields-render/tree/1.0.7"
             },
-            "time": "2025-05-24T05:40:37+00:00"
+            "time": "2025-07-11T00:45:04+00:00"
         },
         {
             "name": "bojaghi/helper",
@@ -407,16 +459,16 @@
         },
         {
             "name": "bojaghi/seed-objects",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bojaghi/seed-objects.git",
-                "reference": "64a9147051db10a42dbb3f86c50f7263a8ab54e9"
+                "reference": "f248cc1c6130415f010328f98db8a7ed02136a99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bojaghi/seed-objects/zipball/64a9147051db10a42dbb3f86c50f7263a8ab54e9",
-                "reference": "64a9147051db10a42dbb3f86c50f7263a8ab54e9",
+                "url": "https://api.github.com/repos/bojaghi/seed-objects/zipball/f248cc1c6130415f010328f98db8a7ed02136a99",
+                "reference": "f248cc1c6130415f010328f98db8a7ed02136a99",
                 "shasum": ""
             },
             "require": {
@@ -449,9 +501,9 @@
             "homepage": "https://github.com/bojaghi/seed-objects",
             "support": {
                 "issues": "https://github.com/bojaghi/seed-objects/issues",
-                "source": "https://github.com/bojaghi/seed-objects/tree/1.0.0"
+                "source": "https://github.com/bojaghi/seed-objects/tree/1.0.1"
             },
-            "time": "2024-12-11T11:43:24+00:00"
+            "time": "2025-07-10T12:38:22+00:00"
         },
         {
             "name": "bojaghi/template",
@@ -755,16 +807,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.13.1",
+            "version": "1.13.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "1720ddd719e16cf0db4eb1c6eca108031636d46c"
+                "reference": "faed855a7b5f4d4637717c2b3863e277116beb36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/1720ddd719e16cf0db4eb1c6eca108031636d46c",
-                "reference": "1720ddd719e16cf0db4eb1c6eca108031636d46c",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/faed855a7b5f4d4637717c2b3863e277116beb36",
+                "reference": "faed855a7b5f4d4637717c2b3863e277116beb36",
                 "shasum": ""
             },
             "require": {
@@ -803,7 +855,7 @@
             ],
             "support": {
                 "issues": "https://github.com/myclabs/DeepCopy/issues",
-                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.1"
+                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.3"
             },
             "funding": [
                 {
@@ -811,7 +863,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-04-29T12:36:36+00:00"
+            "time": "2025-07-05T12:25:42+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -2503,7 +2555,8 @@
     "prefer-lowest": false,
     "platform": {
         "php": ">=8.2",
-        "ext-intl": "*"
+        "ext-intl": "*",
+        "ext-mbstring": "*"
     },
     "platform-dev": {},
     "plugin-api-version": "2.6.0"

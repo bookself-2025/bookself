@@ -1,16 +1,23 @@
 import BookImage from '@/v1/components/parts/book-image'
 import TaxSelector from '@/v1/components/parts/tax-selector'
-import {BookType, OwnType, ReadType} from '@/v1/libs/types'
+import useBookselfContext from '@/v1/libs/context'
+import {BookType, ReadType} from '@/v1/libs/types'
 import {cn} from '@/v1/libs/utils'
 import {Drawer} from 'vaul'
 
 type Props = {
     book: BookType,
-    onChangeOwn: (own: OwnType) => void
+    onChangeOwn: (own: number) => void
     onChangeRead: (read: ReadType) => void
 }
 
 export default function BookDetail(props: Props) {
+    const {
+        state: {
+            ownTerms,
+        },
+    } = useBookselfContext()
+
     const {
         book,
         onChangeOwn,
@@ -27,9 +34,36 @@ export default function BookDetail(props: Props) {
                     />
                 </figure>
                 <div className="mt-4">
-                    <Drawer.Title className="text-xl font-semibold opacity-80">
+                    <Drawer.Title className="text-xl text-center font-semibold opacity-80">
                         {book.title}
                     </Drawer.Title>
+                    <div className="mt-4">
+                        {/* own */}
+                        <TaxSelector
+                            className="tax--own mt-4 gap-0.25"
+                            onChange={(value) => onChangeOwn(value as number)}
+                            terms={new Map([
+                                [ownTerms['own-by-me'], '소유'],
+                                [ownTerms['own-borrowed'], '대여중'],
+                                [ownTerms['own-want-to-sell'], '판매 희망'],
+                                [ownTerms['not-own'], '미소유'],
+                            ])}
+                            value={book.own}
+                        />
+                        {/* read */}
+                        <TaxSelector
+                            className="tax--read mt-4 gap-0.25 "
+                            disabled={ownTerms['not-own'] === book.own}
+                            onChange={(value) => onChangeRead(value as ReadType)}
+                            terms={new Map([
+                                ['not-read', '읽기 전'],
+                                ['reading', '읽는 중'],
+                                ['read', '읽음'],
+                            ])}
+                            value={book.read}
+                        />
+                    </div>
+                    <div className="divider" />
                     <div className="book-properties mt-4 overflow-x-auto">
                         <table className="table">
                             {Object.entries({
@@ -50,32 +84,6 @@ export default function BookDetail(props: Props) {
                         </table>
                     </div>
                 </div>
-            </div>
-            <div className="divider" />
-            <div className="mt-4 pb-8">
-                {/* own */}
-                <TaxSelector
-                    className="tax--own mt-4 gap-0.25"
-                    onChange={(value) => onChangeOwn(value as OwnType)}
-                    terms={{
-                        'own': '소장',
-                        'borrow': '대여',
-                        'sold': '판매',
-                        'wish': '구매희망',
-                    }}
-                    value={book.own}
-                />
-                {/* read */}
-                <TaxSelector
-                    className="tax--read mt-4 gap-0.25 "
-                    onChange={(value) => onChangeRead(value as ReadType)}
-                    terms={{
-                        'not-read': '읽기 전',
-                        'reading': '읽는 중',
-                        'read': '읽음',
-                    }}
-                    value={book.read}
-                />
             </div>
         </div>
     )

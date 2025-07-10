@@ -7,7 +7,7 @@ type AddBookType = {
     pressName: string
     releaseDate: string
     price: string
-    own: string
+    own: number
     read: string
 }
 
@@ -49,10 +49,11 @@ type ImageType = {
 }
 
 type OwnType =
-    | 'own'
-    | 'borrow'
-    | 'sold'
-    | 'wish'
+    | 'own-by-me'
+    | 'own-borrowed'
+    | 'own-want-to-sell'
+    | 'not-own'
+    | number
 
 type ReadType =
     | 'not-read'
@@ -61,6 +62,7 @@ type ReadType =
 
 type StateType = {
     book?: BookType
+    ownTerms: { [key: string]: number }
     siteMeta: {
         baseUrl: string
         title: string

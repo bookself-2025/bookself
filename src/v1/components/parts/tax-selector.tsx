@@ -2,14 +2,16 @@ import {cn} from '@/v1/libs/utils'
 import {HTMLAttributes} from 'react'
 
 type Props = Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> & {
-    terms?: { [key: string]: string }
-    value?: string
-    onChange?: (value: string) => void
+    disabled?: boolean
+    onChange?: (value: string | number) => void
+    terms?: Map<number | string, string>
+    value?: string | number
 }
 
 export default function TaxSelector(props: Props) {
     const {
         className,
+        disabled,
         onChange,
         terms,
         value,
@@ -25,12 +27,13 @@ export default function TaxSelector(props: Props) {
             {...rest}
         >
             <div className="join">
-                {!!terms && Object.entries(terms).map(([key, label]) => (
+                {!!terms && [...terms.entries()].map(([key, label]) => (
                     <button
                         className={cn(
                             'btn btn-sm shrink',
-                            {'btn-neutral': value === key},
+                            {'btn-neutral': value?.toString() === key.toString()},
                         )}
+                        disabled={disabled}
                         key={key}
                         onClick={() => onChange && onChange(key)}
                         type="button"

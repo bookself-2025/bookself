@@ -1,14 +1,22 @@
 import ApiV1 from '@/v1/api'
 import useAddBookForm from '@/v1/components/hooks/use-add-book-form'
 import TaxSelector from '@/v1/components/parts/tax-selector'
+import useBookselfContext from '@/v1/libs/context'
+import {isValidIsbn} from '@/v1/libs/utils'
 import {useStore} from '@tanstack/react-form'
-import {Barcode, Search} from 'lucide-react'
+import {Barcode} from 'lucide-react'
 import {useState} from 'react'
 import {BarcodeScanner} from 'react-barcode-scanner'
 import 'react-barcode-scanner/polyfill'
 
 export default function AddBook() {
     const form = useAddBookForm()
+
+    const {
+        state: {
+            ownTerms,
+        },
+    } = useBookselfContext()
 
     const [
         coverImage,
@@ -112,23 +120,15 @@ export default function AddBook() {
                             children={(field) => {
                                 return (
                                     <field.Labelled label={'ISBN'}>
-                                        <div className="join">
-                                            <input
-                                                id="book-isbn"
-                                                className="input"
-                                                name={field.name}
-                                                onBlur={field.handleBlur}
-                                                onChange={(e) => field.handleChange(e.target.value.replace(/[^0-9]/g, ''))}
-                                                placeholder=""
-                                                type="text"
-                                                value={formatIsbn(isbn)}
-                                            />
-                                            <button
-                                                className="btn btn-secondary"
-                                                disabled={13 !== isbn.length}
-                                                type="button"
-                                                onClick={() => {
-                                                    ApiV1.Book.getBookInfo(field.state.value).then((data) => {
+                                        <input
+                                            id="book-isbn"
+                                            className="input"
+                                            name={field.name}
+                                            onBlur={field.handleBlur}
+                                            onChange={(e) => {
+                                                const value = e.target.value.replace(/[^0-9]/g, '')
+                                                if (isValidIsbn(value)) {
+                                                    ApiV1.Book.getBookInfo(value).then((data) => {
                                                         form.setFieldValue('author', data.author)
                                                         form.setFieldValue('coverImage', data.cover)
                                                         form.setFieldValue('pressName', data.pressName)
@@ -136,11 +136,13 @@ export default function AddBook() {
                                                         form.setFieldValue('releaseDate', data.releaseDate)
                                                         form.setFieldValue('title', data.title)
                                                     })
-                                                }}
-                                            >
-                                                <Search size={18} />
-                                            </button>
-                                        </div>
+                                                }
+                                                field.handleChange(value)
+                                            }}
+                                            placeholder=""
+                                            type="text"
+                                            value={formatIsbn(isbn)}
+                                        />
                                     </field.Labelled>
                                 )
                             }}
@@ -252,13 +254,13 @@ export default function AddBook() {
                                         <TaxSelector
                                             id="book-own"
                                             className="mt-1"
-                                            onChange={(value) => field.setValue(value)}
-                                            terms={{
-                                                'own': '소장',
-                                                'borrow': '대여',
-                                                'sold': '판매',
-                                                'wish': '구매희망',
-                                            }}
+                                            onChange={(value) => field.setValue(value as number)}
+                                            terms={new Map([
+                                                [ownTerms['own-by-me'], '소유'],
+                                                [ownTerms['own-borrowed'], '대여중'],
+                                                [ownTerms['own-want-to-sell'], '판매 희망'],
+                                                [ownTerms['not-own'], '미소유'],
+                                            ])}
                                             value={own}
                                         />
                                     </field.Labelled>
@@ -275,12 +277,12 @@ export default function AddBook() {
                                         <TaxSelector
                                             id="book-own"
                                             className="mt-1"
-                                            onChange={(value) => field.setValue(value)}
-                                            terms={{
-                                                'not-read': '읽기 전',
-                                                'reading': '읽는 중',
-                                                'read': '읽음',
-                                            }}
+                                            onChange={(value) => field.setValue(value.toString())}
+                                            terms={new Map([
+                                                ['not-read', '읽기 전'],
+                                                ['reading', '읽는 중'],
+                                                ['read', '읽음'],
+                                            ])}
                                             value={read}
                                         />
                                     </field.Labelled>
