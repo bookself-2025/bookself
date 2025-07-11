@@ -76,5 +76,5 @@
         "ext-mbstring": "*",
         "bojaghi/base-object": "^1.0"
     },
-    "version": "0.12.0"
+    "version": "0.12.1"
 }

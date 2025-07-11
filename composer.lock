@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "bojaghi/base-object",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bojaghi/base-object.git",
-                "reference": "c661b8e45163a1eaaccd2b42574daf7a8395b03a"
+                "reference": "b2aba35fb99db59bc693c227aa8ada49d2ce2a95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bojaghi/base-object/zipball/c661b8e45163a1eaaccd2b42574daf7a8395b03a",
-                "reference": "c661b8e45163a1eaaccd2b42574daf7a8395b03a",
+                "url": "https://api.github.com/repos/bojaghi/base-object/zipball/b2aba35fb99db59bc693c227aa8ada49d2ce2a95",
+                "reference": "b2aba35fb99db59bc693c227aa8ada49d2ce2a95",
                 "shasum": ""
             },
             "require": {
@@ -49,9 +49,9 @@
             "homepage": "https://github.com/bojaghi/base-object",
             "support": {
                 "issues": "https://github.com/bojaghi/base-object/issues",
-                "source": "https://github.com/bojaghi/base-object/tree/1.0.0"
+                "source": "https://github.com/bojaghi/base-object/tree/1.0.1"
             },
-            "time": "2025-06-17T18:53:59+00:00"
+            "time": "2025-07-11T14:17:46+00:00"
         },
         {
             "name": "bojaghi/clean-pages",
