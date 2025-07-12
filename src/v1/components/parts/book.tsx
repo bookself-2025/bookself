@@ -27,27 +27,42 @@ const Book = forwardRef<HTMLDivElement, Props>((props: Props, ref) => {
             {...rest}
         >
             <figure className="">
-                <BookImage
-                    alt={`${book.title}의 커버 이미지`}
-                    className="w-1/3 h-auto mx-auto"
-                    images={book.coverImage}
-                />
+                <a
+                    href="#"
+                    onClick={(e) => {
+                        e.preventDefault()
+                        onClickBook && onClickBook(book)
+                    }}
+                >
+                    <BookImage
+                        alt={`${book.title}의 커버 이미지`}
+                        className="w-1/3 h-auto mx-auto"
+                        images={book.coverImage}
+                    />
+                </a>
             </figure>
             <div className="card-body">
                 <h2 className="card-title opacity-80">
-                    {book.title}
+                    <a
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            onClickBook && onClickBook(book)
+                        }}
+                    >
+                        {book.title}
+                    </a>
                 </h2>
                 <p className="opacity-75">
-                    저자: {book.author} 출판사: {book.pressName}
+                    <span
+                        className="inline-block max-w-2/3 overflow-hidden text-nowrap whitespace-nowrap text-ellipsis me-2"
+                        title={`저자: ${book.author}`}
+                    >{book.author}</span>
+                    <span
+                        className="inline-block max-w-2/3 overflow-hidden text-nowrap whitespace-nowrap text-ellipsis before:content-['|'] before:me-2"
+                        title={`저자: ${book.pressName}`}
+                    >{book.pressName}</span>
                 </p>
-                <div className="card-actions justify-end mt-8">
-                    <button
-                        className="btn btn-neutral"
-                        onClick={() => onClickBook && onClickBook(book)}
-                    >
-                        자세히 보기
-                    </button>
-                </div>
             </div>
         </div>
     )

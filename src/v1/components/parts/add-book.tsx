@@ -48,6 +48,19 @@ export default function AddBook() {
         return parts.filter((part) => part.length > 0).join('-')
     }
 
+    const fetchBookInfo = (isbn: string): void => {
+        if (isValidIsbn(isbn)) {
+            ApiV1.Book.getBookInfo(isbn).then((data) => {
+                form.setFieldValue('author', data.author)
+                form.setFieldValue('coverImage', data.cover)
+                form.setFieldValue('pressName', data.pressName)
+                form.setFieldValue('price', data.price.toString())
+                form.setFieldValue('releaseDate', data.releaseDate)
+                form.setFieldValue('title', data.title)
+            })
+        }
+    }
+
     return (
         <div className="add-book w-full inline-flex justify-center py-8 px-4">
             <div className="max-w-[320px]">
@@ -65,10 +78,10 @@ export default function AddBook() {
                                     id="add-book-barcode-scanner"
                                     className="mt-2"
                                     onCapture={(barcodes) => {
-                                        if (barcodes.length > 0 && barcodes[0].rawValue.length > 0) {
-                                            form.setFieldValue('isbn', barcodes[0].rawValue)
-                                            setShowBarcodeScanner(false)
-                                        }
+                                        const barcode = barcodes[0].rawValue.toString()
+                                        form.setFieldValue('isbn', barcode)
+                                        setShowBarcodeScanner(false)
+                                        fetchBookInfo(barcode)
                                     }}
                                     options={{
                                         formats: ['ean_13'],
@@ -127,17 +140,8 @@ export default function AddBook() {
                                             onBlur={field.handleBlur}
                                             onChange={(e) => {
                                                 const value = e.target.value.replace(/[^0-9]/g, '')
-                                                if (isValidIsbn(value)) {
-                                                    ApiV1.Book.getBookInfo(value).then((data) => {
-                                                        form.setFieldValue('author', data.author)
-                                                        form.setFieldValue('coverImage', data.cover)
-                                                        form.setFieldValue('pressName', data.pressName)
-                                                        form.setFieldValue('price', data.price.toString())
-                                                        form.setFieldValue('releaseDate', data.releaseDate)
-                                                        form.setFieldValue('title', data.title)
-                                                    })
-                                                }
                                                 field.handleChange(value)
+                                                fetchBookInfo(value)
                                             }}
                                             placeholder=""
                                             type="text"

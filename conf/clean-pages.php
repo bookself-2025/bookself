@@ -18,5 +18,5 @@ return [
         'before'    => function () { bookselfCall(FrontPage::class, 'before'); },
         'body'      => function () { bookselfCall(FrontPage::class, 'render'); },
     ],
-    'show_admin_bar' => true,
+    'show_admin_bar' => false,
 ];
