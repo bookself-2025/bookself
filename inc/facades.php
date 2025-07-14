@@ -1,24 +1,17 @@
 <?php
 
 use Bojaghi\Continy\Continy;
-use Bojaghi\Continy\ContinyException;
 use Bojaghi\Continy\ContinyFactory;
+use Bojaghi\Helper\Facades;
 
 /**
  * Wrapper function
  *
  * @return Continy
- * @throws ContinyException
  */
 function bookself(): Continy
 {
-    static $continy = null;
-
-    if (is_null($continy)) {
-        $continy = ContinyFactory::create(dirname(__DIR__) . '/conf/continy.php');
-    }
-
-    return $continy;
+    return Facades::container(dirname(__DIR__) . '/conf/continy.php', ContinyFactory::class);
 }
 
 /**
@@ -30,13 +23,7 @@ function bookself(): Continy
  */
 function bookselfGet(string $id, bool $constructorCall = false)
 {
-    try {
-        $instance = bookself()->get($id, $constructorCall);
-    } catch (ContinyException $e) {
-        $instance = null;
-    }
-
-    return $instance;
+    return Facades::get($id, $constructorCall);
 }
 
 /**
@@ -49,11 +36,5 @@ function bookselfGet(string $id, bool $constructorCall = false)
  */
 function bookselfCall(string $id, string $method, array|false $args = false): mixed
 {
-    try {
-        $container = bookself();
-        $instance  = $container->get($id);
-        return $container->call([$instance, $method], $args);
-    } catch (ContinyException $e) {
-        wp_die($e->getMessage());
-    }
+    return Facades::call($id, $method, $args);
 }

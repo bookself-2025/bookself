@@ -1,4 +1,4 @@
-import {AddBookType, BookType, GetBookInfoType} from '@/v1/libs/types'
+import {AddBookType, BookType, FilterType, GetBookInfoType, QueryResultType} from '@/v1/libs/types'
 import {baseUrl, nonce, request} from './init'
 
 async function _add(book: AddBookType) {
@@ -12,10 +12,18 @@ async function _getBookInfo(isbn: string) {
     return await request(`${baseUrl}/book-info/${isbn}`) as GetBookInfoType
 }
 
-async function _query() {
-    const endpoint = `${baseUrl}/books`
+async function _query(filter?: FilterType) {
+    const params = new URLSearchParams()
 
-    const r = await fetch(endpoint, {
+    if (filter) {
+        Object.entries(filter).forEach(([key, value]) => {
+            if (value) {
+                params.set(key, value.toString())
+            }
+        })
+    }
+
+    const r = await fetch(`${baseUrl}/books?${params.toString()}`, {
         method: 'GET',
         headers: {
             'Origin': location.origin,
@@ -23,7 +31,11 @@ async function _query() {
         },
     })
 
-    return await r.json() as BookType[]
+    return {
+        total: parseInt(r.headers.get('X-WP-Total') ?? '0'),
+        totalPages: parseInt(r.headers.get('X-WP-TotalPages') ?? '0'),
+        items: await r.json() as BookType[],
+    } as QueryResultType<BookType>
 }
 
 async function _update(book: BookType) {

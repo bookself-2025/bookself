@@ -2,6 +2,17 @@
 
 ## Alpha Stage
 
+### 0.14.0
+
+2025-07-18
+
+- 어드민 메뉴를 bojaghi/admin-menus 모듈로 구현
+- 메타박스를 bojaghi/meta-boxes 모듈로 수정
+- facades.php 내부 구현을 bojaghi/helper 에서 제공하는 파사드로 대체
+- 책 상세 정보에 stack 사용
+- 검색 및 카테고리 필터 기능 추가
+- 페이지네이션 기능 추가
+
 ### 0.13.0
 
 2025-07-13

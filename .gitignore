@@ -9,6 +9,7 @@ node_modules
 *.log
 *.html
 
+/.tanstack/
 /tests/wp-test-core
 /tests/wp-test-lib
 

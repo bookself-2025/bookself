@@ -25,7 +25,27 @@ class Book implements Module
                 'callback'            => [$this, 'addOrQuery'],
                 'methods'             => ['GET', 'POST'],
                 'permission_callback' => 'is_user_logged_in',
-                'args'                => [],
+                'args'                => [
+                    's'    => [
+                        'required'          => false,
+                        'sanitize_callback' => 'sanitize_text_field',
+                    ],
+                    'own'  => [
+                        'required'          => false,
+                        'validate_callback' => fn($v) => is_numeric($v),
+                        'sanitize_callback' => fn($v) => absint($v),
+                    ],
+                    'page' => [
+                        'required'          => false,
+                        'validate_callback' => fn($v) => is_numeric($v),
+                        'sanitize_callback' => fn($v) => absint($v),
+                    ],
+                    'read' => [
+                        'required'          => false,
+                        'validate_callback' => fn($v) => is_string($v),
+                        'sanitize_callback' => fn($v) => sanitize_key($v),
+                    ],
+                ],
             ],
         );
 

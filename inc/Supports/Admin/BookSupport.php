@@ -20,7 +20,7 @@ readonly class BookSupport implements Support
     {
     }
 
-    public function renderMetaBoxProperties(WP_Post $post): void
+    public function renderBookProperties(WP_Post $post): void
     {
         $field = [
             'author'       => $this->postMeta->author->getKey(),
@@ -51,7 +51,7 @@ readonly class BookSupport implements Support
         );
     }
 
-    public function renderMetaBoxStati(WP_Post $post): void
+    public function renderBookStati(WP_Post $post): void
     {
         echo wp_kses(
             $this->template->template('admin/meta-box-book-stati', [

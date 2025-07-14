@@ -31,6 +31,13 @@ type BookType = {
     formattedPrice: string
 }
 
+type FilterType = {
+    s?: string
+    page?: number
+    own?: number
+    read?: ReadType
+}
+
 // 알라딘 API 상품 조회 결과 타입
 type GetBookInfoType = {
     author: string
@@ -62,6 +69,7 @@ type ReadType =
 
 type StateType = {
     book?: BookType
+    filter: FilterType
     ownTerms: { [key: string]: number }
     siteMeta: {
         baseUrl: string
@@ -70,12 +78,20 @@ type StateType = {
     }
 }
 
+type QueryResultType<T> = {
+    total: number
+    totalPages: number
+    items: T[]
+}
+
 export type{
     AddBookType,
     BookType,
+    FilterType,
     GetBookInfoType,
     ImageType,
     OwnType,
+    QueryResultType,
     ReadType,
     StateType,
 }

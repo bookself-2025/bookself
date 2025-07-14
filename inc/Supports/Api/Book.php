@@ -147,14 +147,41 @@ class Book implements Support
     {
         $args = wp_parse_args($args, [
             'user_id' => 0,
+            'page'    => 0,
+            'perPage' => 10,
+            's'       => '',
+            'own'     => 0,
+            'read'    => '',
         ]);
 
-        $result = BookObject::query([
-            'author'      => $args['user_id'],
-            'order'       => 'desc',
-            'orderby'     => 'date',
-            'post_status' => 'publish',
-        ]);
+        $queryArgs = [
+            'author'         => $args['user_id'],
+            'order'          => 'desc',
+            'orderby'        => 'date',
+            'paged'          => $args['page'],
+            'post_status'    => 'publish',
+            'posts_per_page' => $args['perPage'],
+            's'              => $args['s'],
+            'tax_query'      => [],
+        ];
+
+        if ($args['own']) {
+            $queryArgs['tax_query'][] = [
+                'taxonomy' => BOOKSELF_TAX_OWN,
+                'field'    => 'term_id',
+                'terms'    => $args['own'],
+            ];
+        }
+
+        if ($args['read']) {
+            $queryArgs['tax_query'][] = [
+                'taxonomy' => BOOKSELF_TAX_READ,
+                'field'    => 'slug',
+                'terms'    => $args['read'],
+            ];
+        }
+
+        $result = BookObject::query($queryArgs);
 
         return [
             'items'      => $result->items,

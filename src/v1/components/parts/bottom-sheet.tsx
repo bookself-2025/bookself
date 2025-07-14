@@ -14,6 +14,7 @@ export default function BottomSheet() {
         dispatch,
         state: {
             book,
+            filter,
         },
     } = useBookselfContext()
 
@@ -40,7 +41,7 @@ export default function BottomSheet() {
                         ...book,
                         own: termId,
                     }).then(() => {
-                        queryClient.invalidateQueries({queryKey: queryKeys.books()}).then()
+                        queryClient.invalidateQueries({queryKey: queryKeys.books(filter)}).then()
                     })
                 }}
                 onChangeRead={(read) => {
@@ -55,7 +56,7 @@ export default function BottomSheet() {
                         ...book,
                         read: read as ReadType,
                     }).then(() => {
-                        queryClient.invalidateQueries({queryKey: queryKeys.books()}).then()
+                        queryClient.invalidateQueries({queryKey: queryKeys.books(filter)}).then()
                     })
                 }}
             />)}

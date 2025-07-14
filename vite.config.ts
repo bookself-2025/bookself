@@ -2,7 +2,7 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react-swc'
 import path from 'path'
 import {defineConfig} from 'vite'
-import {TanStackRouterVite} from '@tanstack/router-plugin/vite'
+import {tanstackRouter} from '@tanstack/router-plugin/vite'
 import mkcert from 'vite-plugin-mkcert'
 
 // https://vite.dev/config/
@@ -23,7 +23,7 @@ export default defineConfig({
     publicDir: false,
     plugins: [
         // Please make sure that '@tanstack/router-plugin' is passed before '@vitejs/plugin-react'
-        TanStackRouterVite({
+        tanstackRouter({
             target: 'react',
             autoCodeSplitting: true,
             // File-based router setup

@@ -74,7 +74,9 @@
         "bojaghi/clean-pages": "^1.0",
         "ext-intl": "*",
         "ext-mbstring": "*",
-        "bojaghi/base-object": "^1.0"
+        "bojaghi/base-object": "^1.0",
+        "bojaghi/meta-boxes": "^1.0",
+        "bojaghi/admin-menus": "^1.0"
     },
-    "version": "0.13.0"
+    "version": "0.14.0"
 }
